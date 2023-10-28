@@ -1,0 +1,264 @@
+
+\documentclass[a4paper,10pt]{article}
+\author{\textbf{Choi Pooreunhaneul}}
+\title{\textbf{1st sym. Theorems about Number Thoery}}
+\usepackage{kotex}
+
+% 이거 문서 여백 조절이니 알잘딱하게 맞춰쓰세요
+\usepackage[scale=0.75,twoside,bindingoffset=10mm,a4paper]{geometry}
+
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs,mathtools}
+\usepackage{adjustbox,float,graphicx,relsize}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{setspace}
+\usepackage{expl3}
+\usepackage{xparse}
+\usepackage{enumitem}
+\usepackage{forloop}
+\begin{document}
+
+% generates the title
+\maketitle
+
+% insert the table of contents
+\section{Divisibility Theory in the Integers}
+\textbf{Theorem 1.1 Division Algorithm.} There exists unique q and r satisfying
+\begin{equation}
+a=qb+r \qquad (0\leq r<b)
+\end{equation}
+\textbf{Theorem 1.2.} Without some trivial properties, given statement hold:
+\begin{align}
+& (a) \; \textnormal{If} \; a|b \; \textnormal{and} \; a|c, \; \textnormal{then} \; a|(bx+cy) \\
+& (b) \; gcd(a,b)=ax+by
+\end{align}
+\textbf{Corollary.} 
+\begin{align}
+& (a) \; \textnormal{If} \; gcd(a,b)=d, \; \textnormal{then} \; gcd(a/d,b/d)=1
+\\ & (b) \; \textnormal{If} \; a|c \; \textnormal{and} \; b|c, \; \textnormal{with} \; gcd(a,b)=1, \; \textnormal{then} \; ab|c
+\end{align}
+\textbf{Theorem 1.3 Euclid's lemma.}
+\begin{align}
+\textnormal{If} \; a|bc, \; \textnormal{with} \; gcd(a,b)=1, \; \textnormal{then} \; a|c.
+\end{align}
+\textbf{Lemma.}
+\begin{align}
+\textnormal{If} \; a=bq+r, \; \textnormal{then} \; gcd(a,b)=gcd(q,r).
+\end{align}
+\textbf{Theorem 1.4.}
+\begin{align}
+gcd(a,b)lcm(a,b)=ab
+\end{align}
+\textbf{Theorem 1.5.}  The linear Diophantine eq. \textit{ax+by=c} has a sol. iff \textit{d$\mid$c}, where \textit{gcd(a,b)=d}. If \textit{$x_{0}$}, \textit{$y_{0}$} is one of sol, then 
+\begin{align}
+x=x_0+(\cfrac{b}{d})t \quad y=y_0-(\cfrac{a}{d})t.
+\end{align}
+
+
+\newpage
+\section{Primes and Distribution}
+\textbf{Theorem 2.1.} If \textit{$p_n$} is the \textit{n}th prime number, then 
+\begin{align}
+p_n\leq 2^{2^{n-1}}.
+\end{align}
+\textbf{Corollary.} For \textit{$n\geq 1$}, there are at least \textit{n+1} primes less than $2^{2^{n}}$. \\ \\
+\textbf{Theorem 2.2.} There are an infinite number of primes of the form 4\textit{n}+3. \\ \\
+\textbf{Therem 2.3 Dirichlet.} If \textit{a} and \textit{b} are relatively prime positive int, then the arithmetic progression
+\begin{align}
+a, \; a+b, \: a+2b, \cdots
+\end{align}
+contains infinitely many primes. \\ \\
+\textbf{Theorem 2.4.} If all the \textit{n}$>$2 terms of the arithmetic progression
+\begin{align}
+p, \; p+d,\; ,\cdots, \; p+(n-1)d
+\end{align}
+are prime numbers, then the common difference d is divisible by every prime \textit{q}$<$\textit{n}. \\ \\
+
+
+\section{The Theory of Conguruences}
+\textbf{Theorem 3.1.}
+\begin{align}
+\textnormal{If} \; ca\equiv cb \, (mod \,n), \; \textnormal{then} \; a\equiv b \, (mod \, n/d), \textnormal{where} \; d=gcd(c,n).
+\end{align}
+\textbf{Theorem 3.2.} 
+\begin{align}
+\textnormal{Let} \, P(x)=\sum_{k=0}^{m}{c_{k}x^{k}} \, \textnormal{be a polynomial function of} \, x \, \textnormal{with integral coefficients.} \nonumber
+\\ \textnormal{If} \, a\equiv b \, (mod \, n), \textnormal{then} \, P(a)\equiv P(b) \, (mod \, n).
+\end{align}
+\textbf{Theorem 3.3.} For decimal expansion of the positive integer, given statement hold:
+\begin{align}
+& (a) \; 9|N \; \textnormal{iff} \; 9|S \; \textnormal{for} \; S=N(0) \\
+& (b) \; 11|N \; \textnormal{iff} \; 11|T \; \textnormal{for} \; T=N(-1).
+\end{align}
+\textbf{Theorem 3.4.} The linear conguruence \textit{$ax\equiv b \; (mod \, n)$} has a sol. iff \textit{$d|b$}, where \textit{d=gcd(a,n)}, while it has \textit{d} mutually incongruent sol. mod \textit{n}. \\ \\
+\textbf{Theorem 3.5 Chinese Remainder Theorem.} Let \textit{$n_{1},\cdots,n_{r}$} be positive int. s.t. \textit{$gcd(n_{i},n{j})=1$} for \textit{$i\neq j$}. Then the the system of linear congruences has a simultaneous sol. which is unique mod. the int. \textit{$n_{1}\cdots n_{r}$}. \\ \\
+\textbf{Theorem 3.6.} The system of linear congruences
+\begin{align}
+ax+by\equiv r \, (mod \, n) \nonumber \\
+cx+dy\equiv s \, (mod \, n)
+\end{align}
+has a unique sol. mod. \textit{n} whenever \textit{gcd(ad-bc,n)=1}.
+
+
+\section{Fermat's Theorem}
+\textbf{Theorem 4.1 Fermat's Theorem.} Let \textit{p} be a prime and suppose that \textit{$p\nmid a$}. Then \textit{$a^{p-1}\equiv 1 \; (mod \; p)$}. \\ \\
+\textbf{Corollary.} If \textit{p} is a prime, then \textit{$a^{p}\equiv a \; (mod \; p)$} for any int. \textit{a}. \\ \\
+\textbf{Lemma.} If \textit{p} and \textit{q} are distinct primes with \textit{$a^{p}\equiv a \; (mod \; p)$} and \textit{$a^{q}\equiv a \; (mod \; q)$}, then \textit{$a^{pq}\equiv a \; (mod \; pq)$}. \\ \\
+\textbf{Definition.} If \textit{$n|a^{n}-a$} holds, then \textit{n} is called a pseudoprime to the base \textit{a}. \\ \\
+\textbf{Theorem 4.2.} If \textit{n} is an odd pseudoprime, then \textit{$M_{n}=2^{n}-1$} is a larger one. \\ \\
+\textbf{Theorem 4.3.} Let \textit{n} be a composite square-free int, say, \textit{$n=p_{1}\cdots p_{r}$}, where they are distinct prime. If \textit{$p_{i}-1|n-1$}, then \textit{n} is an absolute pseudoprime. \\ \\
+\textbf{Theorem 4.4 Wilson.} If \textit{p} is a prime, then \textit{$(p-1)!\equiv -1 \; (mod \; p)$}. \\ \\
+\textbf{Theorem 4.5.} The quadratic congruence \textit{$x^{2}+1\equiv 0 \; (mod \; p)$}, where \textit{p} is an odd prime, has a sol. iff \textit{$p\equiv 1 \; (mod \; 4)$}. \\ \\
+
+
+\section{Number-Theoretic Functions}
+\textbf{Definition.} Given a positive int. \textit{n}, \textit{$\tau(n)$} denote the number of positive divisors of \textit{n} and \textit{$\sigma(n)$} denote the sum of those divisors. \\ \\
+\textbf{Theorem 5.1.} The functions \textit{$\tau, \; \sigma$} are both multiplicative. \\ \\
+\textbf{Theorem 5.2.} If \textit{f} is a multiplicative function and \textit{F} is defined by
+\begin{align}
+F(n)=\sum_{d|n}{f(d)}
+\end{align}
+then \textit{F} is also multiplicative and converse also holds. \\ \\
+\textbf{Definition.} For a positive int. \textit{n}, define \textit{$\mu$} by the rules
+\begin{align}
+\mu(n)=\left \{ \begin{array}{cc} 1 \quad \textnormal{if} \; n=1 \\ 0 \quad \textnormal{if} \; p^{2}|n \\ (-1)^{r} \quad \textnormal{if} \; n=p_{1}\cdots p_{r} \end{array} \right.
+\end{align}
+\textbf{Theorem 5.3.} For each positive int. \textit{n},
+\begin{align}
+\sum_{d|n}{\mu(d)}=\left \{ \begin{array}{cc} 1 \quad \textnormal{if} \; n=1 \\ 0 \quad \textnormal{if} \; n>1\end{array} \right.
+\end{align}
+\textbf{Theorem 5.4 M$\ddot{o}$bius inversion formula.} Let \textit{F, f} be two number-theoretic functions related by formula
+\begin{align}
+F(n)=\sum_{d|n}{f(d)}.
+\end{align}
+Then
+\begin{align}
+f(n)=\sum_{d|n}{\mu(d)F(\frac{n}{d})=\sum_{d|n}{\mu(\frac{n}{d})F(d)}}.
+\end{align}
+\textbf{Theorem 5.5.} If \textit{n} is a positive int,  then the exponent of the highest power of \textit{p} that divides \textit{n!} is
+\begin{align}
+\sum_{k=1}^{\infty}{[\frac{n}{p^{k}}]}
+\end{align}
+where the series is finite. \\ \\
+\textbf{Theorem 5.6.} Let \textit{F, f} be number-theoretic functions s.t.
+\begin{align}
+F(n)=\sum_{d|n}{f(d)}
+\end{align}
+Then, for any positive int. \textit{N},
+\begin{align}
+\sum_{n=1}^{N}{F(n)}=\sum_{k=1}^{N}{f(k)[\frac{N}{k}]}
+\end{align}
+\textbf{Corollary.} Following holds:
+\begin{align}
+\sum_{n=1}^{N}{\tau(n)}=\sum_{n=1}^{N}{[\frac{N}{k}]} \\
+\sum_{n=1}^{N}{\sigma(n)}=\sum_{n=1}^{N}{n[\frac{N}{k}]}
+\end{align}
+
+
+\section{Euler's Generalization of Fermat's Theorem}
+\textbf{Definition.} \textit{$\phi(n)$} denote the number of positive int. not exceeding \textit{n} that are relatively prime to \textit{n}. Also, it is multiplicative. \\ \\
+\textbf{Theorem 6.1.} If \textit{p} is a prime and \textit{$k>0$}, then
+\begin{align}
+\phi(p^{k})=p^{k}-p^{k-1}=p^{k}(1-\frac{1}{p})
+\end{align}
+\textbf{Theorem 6.2.}
+\begin{align}
+\phi(n)=n(1-\frac{1}{p_{1}})\cdots (1-\frac{1}{p_{r}})
+\end{align}
+\textbf{Lemma.} Let \textit{$n>1$} and \textit{gcd(a,n)=1}. If \textit{$a_{1}, \cdots, a_{\phi(n)}$} are the int. less than \textit{n} and relatively prime to \textit{n}, then
+\begin{align}
+aa_{1}, \cdots, aa_{\phi(n)}
+\end{align}
+are congruent mod \textit{n} to \textit{$a_{1}, \cdots, a_{\phi(n)}$} in some order. \\ \\
+\textbf{Theorem 6.3 Euler.} If \textit{$n\geq1$} and \textit{gcd(a,n)=1}, then \textit{$a^{\phi(n)}\equiv1 \; (mod \; n)$}. \\ \\
+\textbf{Theorem 6.4 Gauss.} For each positive int,
+\begin{align}
+n=\sum_{d|n}{\phi(d)}
+\end{align}
+the sum being extended over all positive divisors of \textit{n}. \\ \\
+\textbf{Theorem 6.5.} For \textit{$n>1$}, the sum of the positive int. less than \textit{n} and relatively prime to it is \textit{$\frac{1}{2}n\phi(n)$}. \\ \\
+\textbf{Theorem 6.6.} For any positive int,
+\begin{align}
+\phi(n)=n\sum_{d|n}{\frac{\mu(d)}{d}}
+\end{align}
+
+
+\section{Primitive Roots and Indices}
+\textbf{Definition.} Let \text{$n>1$} and \textit{gcd(a,n)=1}. The order of \textit{a} mod \textit{n} is the smallest positive int. \textit{k} s.t. \textit{$a^{k}\equiv1 \; (mod \; n)$}. If it is \textit{$\phi(n)$}, then \textit{a} is a primitive root of \textit{n}. \\ \\
+\textbf{Theorem 7.1.} Let the integer \textit{a} have order \textit{k} mod \textit{n}. Then \textit{$a^{h}\equiv1 \; (mod \; n)$} iff \textit{$k|h$}; in particular, \textit{$k|\phi(n)$}. \\ \\
+\textbf{Theorem 7.2.} If the int. \textit{a} has order \textit{k} mod \textit{n}, then \textit{$a^{i}\equiv a^{j} \; (mod \; n)$} iff \textit{$i\equiv j \; (mod \; k)$}. \\ \\ 
+\textbf{Corollary.} If \textit{a} has order \textit{k} mod \textit{n}, then the int. \textit{$a, \; a^{2},\cdots,a^{k}$} are incongrunt mod \textit{n}. \\ \\ 
+\textbf{Theorem 7.3.} If \textit{a} has order \textit{k} mod \textit{n} and \textit{$h>0$}, then \textit{$a^{h}$} has order \textit{$\cfrac{k}{gcd(h,k)}\; (mod \, n)$}. \\ \\
+\textbf{Theorem 7.4.} Let \textit{gcd(a,n)=1} and let \textit{$a_{1}, \cdots, a_{\phi(n)}$} be the positive int. less than \textit{n} and relatively prime to \textit{n}. If \textit{a} is a primitive root on \textit{n}, then
+\begin{align}
+a^{1}, \cdots, a^{\phi(n)}
+\end{align}
+are congruent mod \textit{n} to \textit{$a_{1}, \cdots, a_{\phi(n)}$} in some order. \\ \\
+\textbf{Corollary.} If \textit{n} has a primitive root, then it has exactly \textit{$\phi(\phi(n))$} of them. \\ \\
+\textbf{Theorem 7.5 Lagrange.} If \textit{p} is a prime and
+\begin{align}
+f(x)=a_{n}x^{n}+\cdots+a_{1}x+a_{0} \qquad a_{n}\not\equiv0 \; (mod \; p)
+\end{align}
+is a poly. with int. coeff, then the congruence
+\begin{align}
+f(x)\equiv 0 \; (mod \; p)
+\end{align}
+has at most \textit{n} incongrunet sol. mod \textit{p}. \\ \\
+\textbf{Corollary.} If \textit{p} is a pirme and \textit{$d|p-1$}, then the congruence
+\begin{align}
+x^{d}-1\equiv0 \; (mod \; p)
+\end{align}
+has exactly \textit{d} sol. \\ \\
+\textbf{Theorem 7.6.} If \textit{p} is a pirme and \textit{$d|p-1$}, then there are exactly \textit{$\phi(d)$} incongruent integers having order \textit{d} mod \textit{p}. \\ \\
+\textbf{Corollary.}  If \textit{p} is a prime, then there are exactly \textit{$\phi(p-1)$} incongruent primitive roots of \textit{p}. \\ \\
+\textbf{Theorem 7.7.} For \textit{$k\geq3$}, the int. \textit{$2^{k}$} has no primitive roots. \\ \\
+\textbf{Theorem 7.8.} If \textit{gcd(m,n)=1}, where \textit{$m,n>2$}, then the int. \textit{mn} has no primitive roots. \\ \\
+\textbf{Lemma.} If \textit{p} is an odd prime, $\exists$ primitive root \textit{r} of \textit{p} s.t. \textit{$r^{p-1}\not\equiv1 \; (mod \; p^{2})$}. \\ \\
+\textbf{Corollary.} If \textit{p} is an odd prime, then \textit{$p^{2}$} has a primitive root; in fact, for a primitive root \textit{r} of \textit{p}, either \textit{$r, \; r+p$} or both is a primitive root of \textit{$p^{2}$}. \\ \\
+\textbf{Lemma.} Let \textit{p} be an odd prime and let \textit{r} be a primitive root of \textit{p} with the property that \textit{$r^{p-1}\not\equiv1 \; (mod \; p^{2})$}. Then for each int. \textit{$k\geq2$},
+\begin{align}
+r^{p^{k-2}(p-1)}\not\equiv1 \; (mod \; p^{k})
+\end{align}
+\textbf{Theorem 7.9.} If \textit{p} is an odd prime number and \textit{$k\geq1$}, then there exists a primitive root for \textit{$p^{k}$}. \\ \\
+\textbf{Corollary.} There are primitive roots for \textit{$2p^{k}$}, where \textit{p} is an odd prime and \textit{$k\geq1$}. \\ \\
+\textbf{Definition.} Let \textit{r} be a primitive root of \textit{n}. If \textit{gcd(a,n)=1}, then the smallest positive integer \textit{k} s.t. \textit{$a\equiv r^{k} \; (mod \; n)$} is called the index of \textit{a} relative to \textit{r}. \\ \\
+We denote the index of \textit{a} relative to \textit{r} by ind$_{\textit{r}} \textit{a}$ or just ind \textit{a}. \\ \\
+\textbf{Theorem 7.10.} If \textit{n} has a primitive root \textit{r} and ind \textit{a} denotes the index of \textit{a} relative to \textit{r}, then the following properties hold:
+\begin{align}
+& (a) \; \textnormal{ind} \;(ab)\equiv \textnormal{ind} \; a+\textnormal{ind} \; b \; (\textnormal{mod} \; \phi(n)). \\
+& (b) \; \textnormal{ind} \; a^{k}=k \; \textnormal{ind} \; a \; (\textnormal{mod} \; \phi(n)). \\
+& (c) \; \textnormal{ind} \; 1\equiv0 \; (\textnormal{mod} \; \phi(n)), \textnormal{ind} \; r\equiv1 \; (\textnormal{mod} \; \phi(n)).
+\end{align}
+\textbf{Theorem 7.11.} Let \textit{n} be an int. possessing a primitive root and let \textit{gcd(a, n)}=1. Then the congruence \textit{$x^{k}\equiv a \; (\textnormal{mod} \; n)$} has a sol. iff
+\begin{align}
+a^{\phi(n)/d}\equiv 1 \; (mod \; n)
+\end{align}
+where \textit{$d=gcd(k,\phi(n)$}; if it has a sol, there are exactly \textit{d} sol. mod \textit{n}. \\ \\
+\textbf{Corollary.} Let \textit{p} be a prime and \textit{gcd(a,p)=1}. Then the congruence \textit{$x^{k}\equiv a \; (mod \; p)$} has a sol. iff \textit{$a^{(p-1)/d}\equiv1 \; (mod \; p)$}, where \textit{d=gcd(k,p-1)}. \\ \\
+
+\setcounter{section}{-1}
+\section{Hensel's Lemma}
+Let \textit{p} be a prime. Then let
+\begin{align}
+P(x)=x^{n}+\sum_{i=0}^{n-1}{c_{i}x^{i}}
+\end{align}
+be a polynomial with integer coefficient. Assume that $\exists$ int. $\; a_{1}$ s.t. 
+\begin{align}
+P(a_{1})\equiv0 \; (mod \; p) \qquad and \quad P'(a_{1})\not\equiv0 \; (mod \; p).
+\end{align}
+Then, for all natural number \textit{k}, $\exists$ int. $\; a_{k}$ unique up to \textit{$mod \; p^{k}$} s.t. 
+\begin{align}
+a_{k}\equiv a_{1} \; (mod \; p) \qquad and \qquad P(a_{k})\equiv0 \; (mod \; p^{k})
+\end{align}
+
+This is done.
+
+\end{document}
+
+\section{The Quadratic Reciprocity Law}
+\textbf{Definition.} Let \textit{p} be an odd prime and \textit{gcd(a,p)=1}. If the quadratic congruence \textit{$x^{2}\equiv a \; (mod \; p)$} has a sol, then \textit{a} is said to be a quadratic residue of \textit{p}. Otherwise, \textit{a} is called a quadratic nonresidue of \textit{p}. \\ \\
+\textbf{Theorem 8.1 Euler's criterion.} Let \textit{p} be an odd prime and \textit{gcd(a,p)=1}. Then \textit{a} is a quadratic residue of \textit{p} iff \textit{$a^{(p-1)/2}\equiv1 \; (mod \; p)$}. \\ \\
+\textbf{Corollary.} Let \textit{p} be an odd prime and \textit{gcd(a,p)=1}. Then \textit{a} is a quadratic residue or nonresidue of \textit{p} according to whether
+\begin{align}
+a^{(p-1)/2}\equiv1 \; (mod \; p) \qquad \textnormal{or} \qquad a^{(p-1)/2}\equiv-1 \; (mod \; p)
+\end{align}
