@@ -1,0 +1,210 @@
+\documentclass{beamer}
+\usepackage{graphicx} % Required for inserting images
+\useoutertheme{infolines}
+\setbeamertemplate{navigation symbols}{}
+\usetheme{Madrid} 
+\usecolortheme{whale} 
+\usepackage{graphicx}
+\usepackage{kotex}
+
+\title{Brief Idea of Rain Gauge using a Capacitor}
+\author{PH161 Group 8}
+\date{August 2023}
+
+
+\begin{document}
+
+%First Page - Title
+\begin{frame}
+\maketitle
+\end{frame}
+
+\begin{frame}{Assumptions and Formula}
+    \begin{block}{Assumptions}
+        We assumed here, ideal gauge and permittivity. For example. We assumed small radius a as 1cm, large radius b as 5cm, and we have 0.1mm of water inside it while permittivity of water and air is 80.2 and 1, respectively.
+    \end{block}
+    \begin{block}{Note.}
+        \begin{equation}
+            \nonumber C=2\pi\epsilon_0\cfrac{L}{ln\frac{a}{b}}, \quad a<b, \quad \epsilon_0\approx8.854\times10^{-12}
+        \end{equation}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Further Assumptions}
+    \begin{figure}[h]
+\centering
+\begin{minipage}[b]{0.4\textwidth}
+\includegraphics[width=\textwidth]{계산계산.jpg}
+\caption{Our assumption 1) a=1cm, b=5cm}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.42\textwidth}
+\includegraphics[width=\textwidth]{123123.jpg}
+\caption{Our assumption 2) R=1m} 
+\end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Calculation Time}
+    \begin{block}{Area of Air}
+        \begin{equation}
+            2\sqrt{R^2-(R-h+x)^2}
+        \end{equation}
+        Where $K$ is relative permittivity.
+    \end{block}
+    \begin{block}{Area of Rain}
+        \begin{equation}
+            (b-a)-2\sqrt{R^2-(R-h+x)^2}
+        \end{equation}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Calculation Time}
+    \begin{align}
+        &dc_{air}=2\pi\epsilon_0\cfrac{dx}{ln\left(\frac{2\sqrt{R^2-(R-h+x)^2}+a}{a}\right)} \\
+        &dc_{rain}=2\pi\epsilon_0K\cfrac{dx}{ln\left(\frac{(b-a)-2\sqrt{R^2-(R-h+x)^2}+a}{a}\right)}
+    \end{align} 
+    Then let (1) in before page is $\alpha$.
+    \begin{align}
+        \cfrac{1}{dc_{tot}}&=\cfrac{1}{dc_{air}}+\cfrac{1}{dc_{rain}}=\cfrac{ln\left(\frac{\alpha+a}{a}\right)}{2\pi\epsilon_0dx}+\cfrac{ln\left(\frac{b-\alpha}{a}\right)}{2\pi\epsilon_0Kdx} \\
+        \nonumber &=\cfrac{Kln\left(\frac{\alpha+a}{a}\right)+ln\left(\frac{b-\alpha}{a}\right)}{2\pi\epsilon_0Kdx}=\cfrac{ln\left(\frac{(\alpha+a)^K(b-\alpha)}{a^{K+1}}\right)}{2\pi\epsilon_0Kdx}
+    \end{align}
+\end{frame}
+
+\begin{frame}{Calculation Time}
+    \begin{equation}
+        \therefore dc_{tot}=\cfrac{2\pi\epsilon_0Kdx}{ln\left(\frac{(\alpha+a)^K(b-\alpha)}{a^{K+1}}\right)}
+    \end{equation}
+    \begin{align}
+        c_{tot}=\int_0^hdc_{tot}=\int_0^h\cfrac{2\pi\epsilon_0K}{Kln(\alpha+1)+ln(b-\alpha)-(K+1)ln(a)}dx
+    \end{align}
+    Now since $h$ is extremely small, we can ignore phenomena caused by meniscus.
+\end{frame}
+
+\begin{frame}{Calculation Time}
+    Now based on (7), previous page, we can calculate capacitance when height of accumulated rain is $x$cm. Suppose $a=1$ and $b=5$cm, and we have half-full gauge. Then
+    \begin{equation}
+        \nonumber c_{tot}=2\pi\epsilon_0\cfrac{Rx+L-x}{ln\left(\frac{b}{a}\right)}=2\pi\times8.854\times10^{-12}\tiems\cfrac{79.2x+L}{ln\left(\frac{b}{a}\right)}.
+    \end{equation}
+    By calculation, we can derive 
+    \begin{equation}
+        \nonumber c_{tot}=1.386nF.
+    \end{equation}
+\end{frame}
+
+%Second Page - Capacitor
+\begin{frame}{Type of Capacitor}
+    \begin{block}{Our Selection of Capacitor: Cylindrical Capacitor}
+        Since cylinder is a typical appearance of rain gauge, we choose cylindrical capacitor.
+    \end{block}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.5\linewidth]{cylindrical.jpg}
+        \caption{Example of Cylindrical Capacitor}
+        \label{fig:enter-label}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Type of Current}
+    \begin{block}{Our Considerations:}
+        \begin{enumerate}
+            \item Alternating Current - We can use phase to measure
+            \item Direct Current - Unfortunately, we failed to find any advantages
+        \end{enumerate}
+    \end{block}
+    \begin{block}{Our Selection of Current: AC}
+        We think Direct Current is not appropriate for rain gauge because it has trouble for continuous measurement, so we decided to use Alternating Current, AC.
+    \end{block}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\linewidth]{Phase.jpeg}
+        \caption{Enter Caption}
+        \label{fig:enter-label}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{How to make AC?}
+    \begin{block}{Our Considerations:}
+        \begin{enumerate}
+            \item Function Generator - This device didn't fit to our project, since this 'violate' our purpose of rain gauge, to be protable and convenient.
+            \item Oscillator Circuit - Because of reasons above, we judged this is more 'fit' to our project.
+        \end{enumerate}
+    \end{block}
+    \begin{block}{Our Selection: OC}
+        We take more weight in protability and convenience. So function generator was not a good choice. Also, by choose OC, we can make gauge with less money that FG. \\
+        Further, as we talk a bit later, we have to choose which kind of OC to use among various kind of OC, but we will leave it to our future....
+    \end{block}
+\end{frame}
+
+\begin{frame}{About Circuit}
+    \begin{block}{NOTE!}
+        We actually failed to decide 100\%ly which kind of OC we should use since its various variations, but now, we are concerning Wien Bridge Oscillator.
+    \end{block}
+    \begin{block}{Our Selection: Wien Bridge Oscillator}
+        Basically, WBO, variation of Bridge Circuit, generates sine waves. It can generate various frequencies, so we chose it. But since it has some variations, we yet deciding which kind of circuit we'll use specifically.
+    \end{block}
+    \begin{block}{How to measure?}
+        We will use formula
+        \begin{equation}
+            \nonumber\cfrac{V_{in}}{V_{out}}=\cfrac{Xc}{Z}
+        \end{equation}
+        where $V_{out}$ is voltage on the capacitor and Z is impedance.
+    \end{block}
+\end{frame}
+
+\begin{frame}{About Circuit}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{Wien_Bridge_Oscillator.png}
+        \caption{Wien Bridge Oscillator}
+        \label{fig:enter-label}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{About Accuracy}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.5\linewidth]{스크린샷 2023-10-08 135542.png}
+        \caption{Our Assumption on this accuracy test}
+        \label{Our Assumption on this accuracy test}
+    \end{figure}
+    \begin{block}{Note.}
+        \begin{equation}
+            \nonumber C\approx kl
+        \end{equation}
+        where $k\approx10^{-9}$ and $l$ is fall (m).
+    \end{block}
+\end{frame}
+
+\begin{frame}{About Accuracy}
+    Let impedance of capacitor is $\cfrac{1}{wC}$.
+
+    Then, Voltage at $R$ is:
+    \begin{equation}
+        \nonumber \cfrac{VR}{\sqrt{R^2+\frac{1}{C^2w^2}}}=\cfrac{VRCw}{\sqrt{1+R^2C^2w^2}}.
+    \end{equation}
+    Approximate $RCW<<1.$ Then, 
+    \begin{align}
+        \nonumber &\approx VRCw=V_R.
+        \nonumber &\therefore l=\cfrac{V_R}{kRwV}.
+    \end{align}
+    Let: 
+    
+    $V_R$: Voltmeter's Error $\sim$ 1\%
+
+    $R$: Circuit's Resistance and Elec. Capacity $\sim$ 5\% 
+
+    $k$: Shape of Capacitor $\sim$ 5\%
+
+    $\therefore$ Tot. Error $\approx$7\%.
+\end{frame}
+
+\begin{frame}{References}
+    \begin{itemize} 
+        \item 지식저장고. (27 June 2017). [일반물리학] 18. 전기용량과 유전체 (1: 전기용량)
+        \item Richard Wolfson. (25 June 2020). \textit{Essential University Physics(4th ed.). Pearson}
+        \item Wikipedia. Wien Bridge Oscillator.
+    \end{itemize}
+\end{frame}
+
+\end{document}
