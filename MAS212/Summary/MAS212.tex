@@ -1,0 +1,90 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage{subfiles}
+\usepackage{calc}
+\usepackage{titlepic}
+\usepackage{graphicx}
+\usepackage{preamble}
+\usepackage{macros}
+\usepackage{letterfonts}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\iftrue
+\pgfplotsset{
+    axis lines=middle,
+    xlabel=$x$,
+    ylabel=$y$,
+    no markers,
+    samples=200,
+    trig format plots=rad,
+    every axis plot/.append style={
+        line width=.7pt,
+        % smooth,
+    },
+}
+\fi
+\usepgfplotslibrary{fillbetween}
+\usepgfplotslibrary{external} 
+\tcbset{shield externalize}
+\pgfmathsetmacro{\PI}{3.141592654}
+
+\pdfsuppresswarningpagegroup=1
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=black,
+    urlcolor=black,
+    pdftitle={MAS212 Linear Algebra Summary},
+    pdfpagemode=FullScreen,
+}
+
+\usetikzlibrary{positioning}
+
+\newcommand\name{Choi Pooreunhaneul / Choi Pooha}   % Name of the student
+\newcommand\university{KAIST} % Name of the university
+\newcommand\department{Mathematical Science} % Name of the department
+
+\title{KAIST\\2023F MAS212 Linear Algebra\\
+Summary\bigskip}
+
+\author{\includegraphics[width=10cm]{MA_KAIST_hori_en.png}\\\textbf{\Large \name} \\
+University: \university\\
+Department: \department\\
+Github: Choi Pooha}
+\date{\today}
+
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\spn}{span}
+
+\begin{document}
+\maketitle
+\newpage
+\pdfbookmark[section]{\contentsname}{toc}
+\tikzexternaldisable
+\tableofcontents
+\tikzexternalenable
+\pagebreak
+
+\chapter{Linear Equations}
+\subfile{chapters/chapter1/chapter1.tex}
+\chapter{Vector Spaces}
+\subfile{chapters/chapter2/chapter2.tex} 
+\chapter{Linear Transformations}
+\subfile{chapters/chapter3/chapter3.tex}
+\chapter{Polynomials}
+\subfile{chapters/chapter4/chapter4.tex}
+\chapter{Determinants}
+\subfile{chapters/chapter5/chapter5.tex}
+\chapter{Elementary Canonical Forms}
+\subfile{chapters/chapter6/chapter6.tex}
+\chapter{The Rational and Jordan Forms}
+\subfile{chapters/chapter7/chapter7.tex}
+\chapter{Inner Product Spaces}
+\subfile{chapters/chapter8/chapter8.tex}
+\vfill
+\begin{center}
+    \textit{\textbf{$\overset{'`}{O}\pi\varepsilon\rho$ $\overset{'`}{\varepsilon}\delta\varepsilon\iota$ $\delta\varepsilon\tilde{\iota}\xi\alpha\iota$}}
+\end{center}
+
+\end{document}
