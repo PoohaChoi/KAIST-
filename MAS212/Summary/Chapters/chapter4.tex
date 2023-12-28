@@ -1,0 +1,214 @@
+\documentclass[C:/LATEX/MAS212/Summary/MAS212.tex]{subfiles}
+
+\begin{document}
+
+\section{Algebras}
+
+\dfn{Algebra}{
+    $F$-algebra $A$ or linear algebra $A/F$ is an $F$-v.s. with a product structvue $A\times A\rightarrow A$ which has ass., dis., comm. where multiplication is not necesserily comm. If $A$ has an element $1_A\in A$ s.t. $\forall\alpha\in A\s(1_A\cdot\alpha=\alpha\cdot 1_A=\alpha)$ then we say $A$ is an $F$-algebra with 1.
+}
+
+\exmp{}{
+    (i) $F[x]:$ finite polynomial with coeff. in $F$ is $F$-algebra with unity 1.
+
+    (ii) $F[[x]]:$ formal power series in $x$ with coeff. in $F:\sum_{i=1}^\infty a_ix^i$ form is $F$-algebra with unity 1.
+
+    (iii) Suppose $n\geq 1$ with field $F$. $M_{n\times n}(F)$: $F$-algebra with unity $1_A=I_n$
+
+    (iv) $V:$ $F$-v.s. $A=L(V,V)$ is $F$-algebra with unity $1_A=Id_V$ with $+$ and $\circ$.
+}
+
+\section{The Algebra of Polynomials}
+
+\nt{
+    $f,g\in F[x]$. $f:=\sum a_ix_i$, $g:=\sum b_jx_j$ We say $f=g\iff\forall i=j\s(a_i=b_j)$. But this is not equiv. to say that $\forall\alpha\in F\s(f(\alpha)=g(\alpha))$.
+}
+
+\exmp{}{
+    $F=\bbZ/p$. Then Fermat's Little Theorem says $\forall\alpha\in F\s(\alpha^p\equiv\alpha)$. Consider $f=1+x^p$ and $g=1+x$. Then $f\neq g$ but $f(\alpha)=g(\alpha)$. 
+}
+
+\dfn{Degree of Polynomials}{
+    Suppose $f\in F[x]\backslash\{0\}$. Degree of $f$ is defined to be $n$ if $f=a_0+\cdots+a_nx^n$ with $a_n\in F\backslash\{0\}$. Note that we don't define degree of 0.
+}
+
+\dfn{Monic}{
+    $f\in F[x]\backslash\{0\}$ is monic if the coeff. of highest deg. is 1.
+}
+
+\exer{}{
+    $f,g\in F[x]\backslash\{0\}$. Then $fg\in F[x]\backslash\{0\}$ where $\deg(fg)=\deg(f)+\deg(g)$ and if $f,g$ is monic, $fg$ either.
+}
+
+\dfn{Evaluation}{
+    $A$ is an $F$-algebra and $f(x)\in F[x]$ where $f=\sum_{i=0}^na_ix^i$. Let $\alpha\in A$ be a fixed element. Define $f(\alpha)=\sum_{i=0}^na_i\alpha^i$ and we call it the evaluation of $\alpha$ in $f(x)$. 
+
+    $ev_\alpha:F[x]\rightarrow A:f(x)\mapsto f(\alpha)$. $f_1+f_2$, $f_1f_2$, $cf_1$ are all respected.
+}
+
+\dfn{Homomorphism}{
+    Let $A_1$ and $A_2$ be both $F$-algebras. A function $\varphi:A_1\rightarrow A_2$ is called a homomorphism of $F$-algebra if:
+    \begin{enumerate}
+        \item It is an $F$-lin. trans.
+        \item $\varphi(\alpha_1\alpha_2)=\varphi(\alpha_1)\varphi(\alpha_2)$
+    \end{enumerate}
+}
+
+\thm{Euclidean Algorithm on $F[x]$}{
+    $f,g\in F[x]$ for nonzero $g$ with property $\deg(f)\geq\deg(g)$. $\exists q\in F[x]\s(r=f-qg)$. we have either $r=0$ or $r\neq0$ for $\deg(r)<\deg(g)$.  
+}
+
+\nt{
+    In modern algebra, a ring with this property is called an Euclidean domain.
+}
+
+\dfn{Divisibility}{
+    If $r=0$, $f=qg$. Then we denote this situation as $g\,|\,f$. 
+}
+
+\mlemma{}{
+    $f(x)\in F[x]\backslash\{0\}$, $(x-c)\in F[x]$ for $c\in F$. Then $(x-c)\,|\,f(x)\iff f(c)=0$.
+}
+
+\pf{Proof}{
+    $f=qg+r=q(x-c)+r$. Then $f(c)=r$, so $(x-c)|f\iff r=0$. These are called a zero, solution, or root of $f$.
+}
+
+\exer{}{
+    $f(x)\in F[x]$, $\deg(f)=n\geq 1$. Then $f$ has at most $n$ roots.
+}
+
+\section{Lagrange Interpolation}
+
+\textit{\textbf{This Chapter is Intentionally Skipped at Lectures}}
+
+\section{Polynomial Ideals}
+
+\dfn{Ideals}{
+    $F:$ field. $F[x]:$ polynomial ring over $F$. An ideal $M\subset F[x]$ is an $F$-subspace s.t. if $f\in F[x]$ and $g\in M$, then $fg\in M$.
+}
+
+\exmp{}{
+    $M=(x):$ poly. divisible by $x$. 
+}
+
+\dfn{Principal Ideal}{
+    An ideal of the form $M=(g_0):$ poly. divisible by $g_0$ is called a principal ideal.
+}
+
+\thm{}{
+    $F:$ field. $M\subset F[x]:$ a nonzero ideal. Then $M$ is a principal ideal given by a monic.
+}
+
+\pf{Proof}{
+    Since $M\neq0$, $M$ does contain nonzero poly. So, the set of deg. of nonzero poly. in $\bbN_0$ is nonempty. Let $g_0\in M$ hs the minimal possible deg. If $g_0=a_dx^d+\cdots a_1x+a_0$, then $\frac{1}{a_d}g_0=x^d+\cdots$ with the same deg. 
+    So using this instead, call it $g_0$, the $g_0$ is monic.
+
+    \clm{}{
+        $M=(g_0)$.
+    }
+
+    \pf{Proof}{
+        $g_0\subset M$ is obvious.
+
+        $(M\subset g_0):$ N.T.S. $\forall f\in M\s(f=qg_0)$. By the Euclidean algorithm, $\exists q,r\in F[x]\s(f=g_0q+r)$. Suppose $r\neq0$. Then $f=qg_0+r$ with $\deg(r)<\deg(g_0)$. But $r=f-qg_0$ where $f,g_0\in M$, $r\in M$. This is contradiction to minimality of $g$. Thus $r=0$, which means $f$ is multiple of $g_0$.
+    }
+}
+
+\nt{
+    By putting $g_0$ monic, $g_0$ is also unique.
+}
+
+\cor{}{
+    $p_1,p_2,\cdots,p_n\in F[x]$ not all zero. Then $\exists!$ monic $g_0\in F[x]$ s.t.
+    \begin{itemize}
+        \item[i)] $p_1F[x]+\cdots+p_nF[x]=(g_0)$
+        \item[ii)]  $\forall i\s(g_0\,|\,p_i)$
+        \item[iii)] if $f\,|\,p_i$ for all $i$, then $f\,|\,g_0$. Such $g_0$ is called G.C.D. of $p_i$.
+    \end{itemize}
+}
+
+\pf{Proof}{
+    Check $p_1F[x]+\cdots+p_nF[x]$ is an ideal. By this, $M\neq0\Rightarrow\exists!g_0\s((g_0)=M)$. Also, $(p_i)\subset M=(g_0)\Rightarrow p_\in(g_0)\Rightarrow g_0\,|\,p_i$. Also, $f\,|\,p_i\Rightarrow p_i=fh_i$ thus $g_0=fh_1F[x]+\cdots+fh_nF[x]\Rightarrow f|g_0$. 
+}
+
+\dfn{Coprime (Relatively Prime)}{
+    $p_i$ are coprime of relatively prime if $\gcd(p_1,\ldots,p_n)=(1)$.
+}
+
+\section{The Prime Factorization of a Polynomial}
+
+\dfn{Reducible}{
+    $F:$ field. $f\in F[x]\backslash\{0\}$. We say $f$ is reducible if $f=gh$ for some $g,h\in F[x]$ where $\deg(g),\deg(h)\geq1$. If we can't, we say it is irreducible.
+}
+
+\dfn{Prime Element}{
+    We say $f$ is a prime element if it has property that whenever $f\,|\,gh$, either $f\,|\,g$ or $f\,|\,h$. 
+}
+
+\exmp{}{
+    $F:$ field. $f:$ poly. of deg. 1 in $F[x]$ is irreducible.
+}
+
+\exmp{}{
+    $F:\bbR$. $f(x)=x^2+ax+b$. $f$ is irreducible $\iff$ $f$ has a root in $\bbR$ $\iff$ $D\geq0$. 
+}
+
+\exmp{}{
+    $F:\bbF_p=\bbZ/p$. Then there are many irreducible poly. of deg. d.
+}
+
+\thm{}{
+    Let $p(x)\in F[x]\backslash\{0\}$. Then it is irreducible $\iff$ it is prime.
+}
+
+\pf{Proof}{
+    $(\Leftarrow):$ Suppose it is reducible. $p=gh$ for some $g,h\in F[x]$ with $\deg.\geq1$. Since $p$ is prime, $p\,|\,g$ or $p\,|\,h$. But then, $\deg(p)\leq\deg(g)$ or $\deg(p)\leq\deg(h)$. But this is impossible since $\deg(g),\deg(h)<\deg(p)$. 
+
+    $(\Rightarrow):$ $\gcd(p,g)=(d)\Rightarrow d\,|\,p\Rightarrow$ $p$ is irreducible, so $d=1$ or $d=p$. If $d=p$, $d\,|\,g$ leads $p\,|\,g$. If $d=1$, $\exists p_0,g_0\s(pp_0+gg_0=1)$. Thus $php_0+ghg_0=h$ leads $p\,|\,h$.
+}
+
+\thm{}{
+    $F:$ field. Every non-constant poly. $f(x)\in F[x]$ factors into a product of irreducible poly. $f=p_1p_2\cdots p_r$, and this is unique up to relabeling.
+}
+
+\pf{Sketch}{
+    For convenience, assume $f$ is monic. If $\deg(f)=1$, $f(x)=x-a$ for $a\in F$. Since $(x-a)$ irreducible, it just holds. 
+
+    Suppose $\deg(f)>1$. We use induction. Suppose theorem holds $\forall g\s(\deg(g)<\deg(f))$. If $f$ itself is irreducible, $f=f$. If $f$ is reeducible, $f=gh$ for some non-constant $g,h\in F[x]$ of $\deg(g),\deg(h)<\deg(f)$. 
+    By induction hypothesis, $g=p_1\cdots p_r$, $h=q_1\cdots q_s$. By putting together, $f=p_1\cdots p_rq_1\cdots q_s$. So existence is proven.
+
+    For uniqueness, suppose $f=p_1\cdots p_r=q_1\cdots q_s$. Then $p_1\,|\,q_1\cdots q_s$. Being prime, $p_1\,|\,q_j$ for some $j$. Since $q_j$ is irreducible, $cq_j=p_1$. By cancelling, repeating, and relabeling, we can deduce factorization is unique.
+}
+
+\dfn{Formal Derivative}{
+    $f(x)\in F[x]=a_0+a_1x+\cdots+a_nx^n$. Define $f'=a_1+2a_2x+\cdots+na_nx^{n-1}$ as formal derivative.
+}
+
+\mlemma{}{
+    $(f+g)'=f'+g'$ and $(fg)'=f'g+fg'$.
+}
+
+\thm{}{
+    $f\in F[x]$. Then, $f$ is a product of distinct irreducible poly. $\iff$ $f$ and $f'$ are relatively Prime.
+}
+
+\pf{Sketch}{
+    ($\Leftarrow$): Suppose $f$ and $f'$ are relatively prime but $f=p^2h$ for irreducible $p$. Then $f'=2pp'h+p^2h'$, which is contradiction. 
+
+    ($\Rightarrow$): Exercise!
+}
+
+\dfn{Algebraically Closed}{
+    $F$ is algebraically closed if every irreducible poly. in $F[x]$ is of deg. 1.
+
+    $\iff$ Every $f(x)\in F[x]$ of deg. $n\geq1$ has precisely $n$ roots with multiplicity.
+
+    $\iff$ Every non-constant $f\in F[x]$ factors into linear poly.
+}
+
+\exmp{}{
+    $\bbC$ is algebraically closed, but $\bbR$ is not.
+}
+
+\end{document}

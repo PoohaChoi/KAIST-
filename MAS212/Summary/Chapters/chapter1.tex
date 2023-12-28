@@ -1,0 +1,60 @@
+\documentclass[C:/LATEX/MAS212/Summary/MAS212.tex]{subfiles}
+
+\begin{document}
+
+\section{Fields}
+\nt{
+    \textbf{
+        \begin{itemize}
+            \item This is summary note for 2023 Fall, KAIST MAS212 - Linear Algebra course taught by Prof. Jinhyun Park.
+            \item I assumed that you are familiar enough to MAS109 - Introduction to Linear Algebra course, or just some notation used in basic linear algebra like matrix and row operations.
+            \item I also assumed that you are familiar enough to some mathematical logic symbols.
+            \item We used Kenneth Hoffman / Ray Kunze - Linear Algebra 2nd ed.
+        \end{itemize} 
+    }
+}
+
+\dfn{Field}{
+    Algebraic structure $\bbF$ satisfying given properties are called field:
+    \begin{enumerate}
+        \item Addition is commutative: $\forall\{x,y\}\subset\bbF\s(x+y=y+z)$
+        \item Addition is associative: $\forall\{x,y,z\}\subset\bbF\s(x+(y+z)=(x+y)+z)$
+        \item $\forall x\in\bbF\s\ues0\in\bbF\s(x+0=x)$ 
+        \item $\forall x\in\bbF\s\ues(-x)\in\bbF\s(x+(-x)=0)$
+        \item Multiplication is commutative: $\forall\{x,y\}\subset\bbF\s(xy=yx)$
+        \item Multiplication is associative: $\forall\{x,y,z\}\subset\bbF\s(x(yz)=(xy)z)$
+        \item $\forall x\in\bbF\s\ues1\in\bbF\s(x1=x)$
+        \item $\forall x\in\bbF\s\ues x\inv=1/x\in\bbF\s(xx\inv=1)$
+        \item $\forall\{x,y,z\}\in\bbF\s(x(y+z)=xy+xz)$
+    \end{enumerate}
+}
+
+\section{Systems of Linear Equations}
+
+\textit{\textbf{This Chapter is Intentionally Skipped at Lectures.}}
+
+\section{Matrices and Elementary Row Operations}
+
+\textit{\textbf{This Chapter is Intentionally Skipped at Lectures.}}
+
+\section{Row-Reduced Echelon Matrices}
+
+\textit{\textbf{This Chapter is Intentionally Skipped at Lectures.}}
+
+\section{Matrix Multiplication}
+
+\dfn{Matrix Multiplication}{
+    $C:=[C_{ij}]$. $C_{ij}:=\sum_{r=1}^nA_{ir}B_{rj}$.
+}
+
+\thm[]{}{
+    Matrix multiplication is associative, but not commutative.
+}
+
+\section{Invertible Matrices}
+
+\dfn{Invertible Matrices}{
+    $P$ is invertible $\iff$ $\ues Q\s(PQ=QP=I)$.
+}
+
+\end{document}

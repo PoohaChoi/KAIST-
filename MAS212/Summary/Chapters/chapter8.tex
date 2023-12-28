@@ -1,0 +1,418 @@
+\documentclass[C:/LATEX/MAS212/Summary/MAS212.tex]{subfiles}
+\usepackage{tikz}
+\begin{document}
+
+\section{Inner Products}
+
+\dfn{Inner Product}{
+    An inner product $(-,-)$ on $V$ is a function $(-,-):V\times V\mapsto F$ satisfying:
+    \begin{enumerate}
+        \item $(-,\s)$ is linear functionoal with $(c\alpha+\beta,\gamma)=c(\alpha,\gamma)+(\beta,\gamma)$
+        \item $(\beta,\alpha)=\overline{(\alpha,\beta)}$
+        \item $\forall\alpha\in\bbF\backslash\{0\}\s((\alpha,\alpha)>0)$
+    \end{enumerate}
+}
+
+\nt{
+    If $F=\bbR$, $(\beta,\alpha)=(\alpha,\beta)$. Thus 1. and 2. leads $(\s,-)$ is also linear. Thus $(\s,\s)$ is symmetric bilinear form.
+
+    But If $F=\bbC$, then $(\alpha,c\gamma)=\overline{c(\gamma,\alpha)}$. In this case, we call $bbC$ is sesqui-linear. Also, $(\alpha,\alpha)=\overline{(\alpha,\alpha)}$, thus $(\alpha,\alpha)\in\bbR$.
+}
+
+\exmp{Standard Inner Product}{
+    $V:=\bbC^n$, $[x_i],[y_i]\in\bbC^n$. Then $([x_i],[y_i])=\sum_{i=1}^nx_i\bar{y_i}$ is called the standard inner product.
+}
+
+\exmp{Positive Definite}{
+    $F=\bbR^n$. $A:$ $n\times n$ real mat. s.t. $\forall x\in\bbR^n$, $x^TAx>0$. Then $A$ is called positive definite. When $A$ is symmetric pos. def., then $(x,y)_A:=x^TAy$.
+}
+
+\exer{}{
+    Prove that $(x,y)_A$ is an inner product on $\bbR^n$.
+}
+
+\thm{}{
+    $F=\bbR$, $V=\bbR^n$. Let $(\s,\s):V\times V\mapsto F$ be an arbitrary inn. prod. on $V$. Then $\exists$ a sym. pos. def. mat. $A$ s.t. $(\s,\s)=(\s,\s)_A$.
+}
+
+\pf{Proof}{
+    Choose a basis, the standard basis for convenient. $(e_i,e_j)=:g_{ij}$. Define $A:=[g_{ij}]$. Let $x,y\in\bbR^n$.
+    Then $x=\sum_{i=1}^nx_ie_i$ and $y=\sum_{j=1}^ny_je_j$. $(x,y)=\sum_i\sum_jx_iy_je_ie_j=\sum_i\sum_jx_ig_{ij}y_j=\sum_ix_i\sum_jg_{ij}y_j=[x^T]_\mfB A[y]_\mfB$.
+}
+
+\dfn{Hermitian Matrix}{
+    $n\times n$ mat. $A$ is called Hermitian if $A^*=A=[a_{ij}]$ where $[A^*]_{ij}=[\overline{a_{ji}}]=\overline{A^T}$.
+}
+
+\thm{}{
+    $V=\bbC^n$. Let $(\s,\s):V\times V\mapsto F$ be an inn. prod. on $V$. Then $(x,y)=x^*Ay$ for some Hermitian pos. def. mat. $A$ and vice versa.
+}
+
+\exmp{}{
+    $V=C([a,b]\mapsto\bbC):\bbC$-v.s. of continuous functions on $[a,b]$. Define $f,g\in V$ as $(f,g:=\int_a^bf(t)\overline{g(t)}dt)$. Then it is an inn. prod. on $V$ of $\infty$-dim.
+}
+
+\dfn{Quadratic Form}{
+    $V:$ v.s. with inn. prod. Define the quadratic form $\alpha\mapsto\|\alpha\|^2=(\alpha,\alpha)\geq0$ and $\alpha=0\iff\|\alpha\|^2=0$.
+}
+
+\exer{Polarization Identity}{
+    $\|\alpha+\beta\|^2=\|\alpha\|^2+2\Re(\alpha,\beta)+\|\beta\|^2$. $F=\bbR$, $(\alpha,\beta)=\frac{1}{4}(\|\alpha+\beta\|^2-\|\alpha-\beta\|^2).$
+    $F=\bbC$, $(\alpha,\beta)=\frac{1}{4}(\|\alpha+\beta\|^2-\|\alpha-\beta\|^2+i\|\alpha+i\beta\|^2-i\|\alpha-i\beta\|^2).$
+}
+
+\section{Inner Product Spaces}
+
+\dfn{Inner Product Space}{
+    $F=\bbR$ or $F=\bbC$. A vector space $V/F$ with a specified inn. prod. called inner product space.
+}
+
+\nt{
+    $\|\alpha\|=\sqrt{(\alpha,\alpha)}$.
+}
+
+\thm{}{
+    $V:$ inn. prod. space. $\forall\alpha,\beta\in V\,\forall c\in F$, we have properties:
+    \begin{enumerate}
+        \item $\|c\alpha\|=|c|\|\alpha\|$
+        \item $\|\alpha\|>0$ for $\alpha\neq0$
+        \item $|(\alpha,\beta)|\leq\|\alpha\|\|\beta\|$
+        \item $\|\alpha+\beta\|\leq\|\alpha\|+\|\beta\|$
+    \end{enumerate}
+}
+
+\pf{Proof}{
+    1 ane 2 are obvious from definition of inn. prod. For 3, just take $\alpha\neq0$. Let $\beta^\parallel:=\frac{(\beta,\alpha)}{\|\alpha\|^2}\alpha$, $\beta^\perp:=\beta-\beta^\parallel$. 
+
+    This is because: $(\beta^\perp,\alpha)=0\iff(\beta,\alpha)=c(\alpha,\alpha)$, thus $c=\frac{(\beta,\alpha)}{(\alpha,\alpha)}$.
+
+    $0\leq\|\beta^\perp\|^2=(\beta^\perp,\beta^\perp)=(\beta,\beta)-|c|^2(\alpha,\alpha)=\|\beta\|^2-\frac{|(\alpha,\beta)|^2}{\|\alpha\|^2}\Rightarrow|(\alpha,\beta)|\leq\|\alpha\|\|\beta\|$.
+
+    For 4, $\|\alpha+\beta\|^2=(\alpha+\beta,\alpha+\beta)=(\alpha,\alpha)+(\alpha,\beta)+(\beta,\alpha)+(\beta,\beta)\leq(\|\alpha\|+\|\beta\|)^2$. Since both side are positive, we can just take off square.
+}
+
+\nt{
+    The "angle" is defined as inner product. Using 3, we can derive $-1\leq\frac{(\alpha,\beta)}{\|\alpha\|\|\beta\|}\leq1$. Then for nonzero $\alpha,\beta$, define angle $\theta$ as:
+    \begin{equation*}
+        \cos\theta=\cfrac{(\alpha,\beta)}{\|\alpha\|\|\beta\|}
+    \end{equation*}
+}
+
+\dfn{Orthogoanl and Orthogonal, Orthonormal Set}{
+    $V:$ inn. prod. space. We say $\alpha,\beta\in V$ are orthogonal or perpendicular if their inn. prod. is 0.
+    If $S\subset V$, $S$ is orthogonal set if $\forall\alpha\neq\beta\in S$, $(\alpha,\beta)=0$. If all element of $S$ satisfies $\|\alpha\|=1$, we say $S$ is orthonormal.
+}
+
+\thm{}{
+    Suppose $S\subset V$ be orthogonal set. Then $S$ is lin. indep.
+}
+
+\pf{Proof}{
+    Take $\{\alpha_1,\alpha_2,\ldots,\alpha_m\}$ as  distinct vectors in $S$. Then $\beta=c_1\alpha_1+\cdots+c_m\alpha_m$. So
+    $(\beta,\,\alpha_k)=(\sum_jc_j\alpha_j,\,\alpha_k)=\sum_jc_j(\alpha_j,\,\alpha_k)=c_k(\alpha_k,\alpha_k)$. Since $(\alpha_k,\alpha_k)\neq0$,
+    $c_k=\frac{(\beta,\alpha_k)}{\|\alpha_k\|^2}$ for $1\leq k\leq m$. When $\beta=0$, this leads $\forall c_i=0$, so $S$ is lin. indep. set.
+}
+
+\thm{Gram-Schmidt}{
+    Let $V$ be an inn. prod. space and let $\beta_1,\ldots,\beta_n$ be any indep. vec. in $V$. Then we can construct orthogonal vectors $\alpha_1,\ldots,\alpha_n$ in $V$ s.t. 
+    for each $k\in[n]$ the set $\{\alpha_1,\ldots,\alpha_k\}$ is a basis for the subspace spanned by $\beta_1,\ldots,\beta_k$. 
+}
+
+\pf{Proof}{
+    We can apply Gram-Schmidt orthogonalization process.
+    $\alpha_1:=\beta_1$. $\beta_2=\beta_2^{\perp\{\alpha_1\}}+\beta_2^{\parallel\{\alpha_1\}}$. $\alpha_2=\beta_2^{\perp\{\alpha_1\}}=\beta_2-\beta_2^{\parallel\{\alpha_1\}}=\beta_2-\frac{(\beta_2,\alpha_1)}{\|\alpha_1\|^2}\alpha_1$.
+    $\beta_3=\beta_3^{\perp\{\alpha_1,\alpha_2\}}+\beta_3^{\parallel\{\alpha_1,\alpha_2\}}.$ $\alpha_3=\beta_3^{\perp\{\alpha_1,\alpha_2\}}=\beta_3-\frac{(\beta_3,\alpha_1)}{\|\alpha_1\|^2}\alpha_1-\frac{(\beta_3,\alpha_2)}{\|\alpha_2\|^2}\alpha_2$, and so on.
+    We can take orthogonal basis with this process.
+}
+
+\cor{}{
+    All f.d. inn. prod. space has orthogonal basis.
+}
+
+\dfn{Best Approximation}{
+    $V:$ inn. prod. space. $W\subset V$, $\beta\in V\backslash W$. A best approximation of $\beta$ to $W$ is $\alpha\in W$ s.t. $\forall\gamma\in W\s(\|\beta-\alpha\|\leq\|\beta-\gamma\|)$.
+}
+
+\thm{}{
+    Let $W$ be a subspaces of an inn. prod. space $V$ and let $\beta$ be a vec. in $V$. Then
+    \begin{enumerate}
+        \item $\alpha\in W$ is a best approx. to $\beta$ by vec. in $W$ $\iff$ $\beta-\alpha$ is orthogonal to every vec. in $W$
+        \item If a best approx. to $\beta$ by vec. in $W$ exists, it is unique
+        \item If $W$ is f.d. and $\{\alpha_1,\ldots,\alpha_n\}$ is any ortho. basis for $W$, then the vec. $\alpha=\sum_k\frac{(\beta,\alpha_k)}{\|\alpha_k\|^2}\alpha_k$ is the unique best approx. to $\beta$ by vec. in $W$
+    \end{enumerate}
+}
+
+\pf{Proof}{
+    Note that $\forall\gamma\in W$, $\beta-\gamma=(\beta-\alpha)+(\alpha-\gamma)$, and $\|\beta-\gamma\|^2=\|\beta-\alpha\|^2+2\Re(\beta-\alpha,\alpha-\gamma)+\|\alpha-\gamma\|^2$.
+    Now suppose $\beta-\alpha$ is ortho. to every vec. in $W$. Then since $(\alpha-\gamma)\in W$, we can see $\|\beta-\gamma\|^2=\|\beta-\alpha\|^2+\|\alpha-\gamma\|^2\geq\|\beta-\alpha\|^2$.
+
+    Conversely, suppose $\forall\gamma\in W\s(\|\beta-\gamma\|\geq\|\beta-\alpha\|)$. Then from above we can find that $\forall\gamma\in W\s(2\Re(\beta-\alpha,\alpha-\gamma)+\|\alpha-\gamma\|^2\geq0$).
+    Since every vec. in $W$ may be expressed in the form $\alpha-\gamma$ with $\gamma\in W$, we see that $2\Re(\beta-\alpha,\tau)+\|\tau\|^2\geq0$. We may take $\tau=-\frac{(\beta-\alpha,\alpha-\gamma)}{\|\alpha-\gamma\|^2}(\alpha-\gamma).$
+    Then the equality reduces to the statement $-\frac{|(\beta-\alpha,\alpha-\gamma)|^2}{\|\alpha-\gamma\|^2}\geq0$, which holds iff $(\beta-\alpha,\alpha-\gamma)=0$. This completes the proof of 1. and ortho. condition is evidently satisfied by at most one vec. in $W$, thus proves 2.
+
+    Now suppose $W$ is f.d. and let $\{\alpha_1,\ldots,\alpha_n\}$ be ortho. basis for $W$. We know $\beta-\alpha$ is ortho. to each elements of basis, i.e., to every vec. in $W$, so $\alpha$ it is best approx. to $\beta$, which leads $\|\beta-\gamma\|\geq\|\beta-\alpha\|$. Therefore $\alpha\in W$ and it is best approx. to $\beta$.
+}
+
+\dfn{Orthogonal Complement}{
+    $W^\perp:=\{\beta\in V\;|\;\alpha\perp\beta\forall\alpha\in W\}$.
+}
+
+\exer{}{
+    $V:$ f.d. inn. prod. space. Then $V=W\oplus W^\perp$
+}
+
+\pf{Proof}{
+    $\beta\in V$. Then $\E\beta$ is best approx. lies in $W$. It is easy to see that this is proj. Also, since $\alpha-E\alpha$ and $\beta-E\beta$ are each ortho. to $W$, 
+    $c(\alpha-E\alpha)+(\beta-E\beta)=(c\alpha+\beta)-(cE\alpha+E\beta)\in W^\perp$. Thus $E$ is linear transformation by uniqueness of ortho. proj.
+
+    Note that $(\beta\in W^\perp)\iff(E\beta=0)$. The eq. $\beta=E\beta+(\beta-E\beta)$ shows $V=W+W^\perp$. Also, $W\cap W^\perp=\{0\}$, so $V=W\oplus W^\perp$.
+}
+
+\section{Linear Functionals and Adjoints}
+
+\thm[inf]{}{
+    $V:$ f.v.s.$/\bbR$ or $\bbC$, $V^*:$ dual vec. space. Let $f\in V^*$. Then $\exists!\beta\in V\s(f(-)=(-,\beta))$.
+}
+
+\pf{Proof}{
+    Choose ortho basis $\{\alpha_1,\ldots,\alpha_n\}$ of $V$. For uniqueness, try $\beta=\sum_{i=1}^nc_i\alpha_i$. We can see $f(\alpha_j)=(\alpha_j,\sum_{i=1}^nc_i\alpha_i)=\sum_{i=1}^n\overline{c_i}(\alpha_j,\alpha_i)=\overline{c_j}(\alpha_j,\alpha_j).$ If such $\beta$ exists, then it must be $\beta=\sum_{i=1}^n\overline{\frac{f(\alpha_i)}{\|\alpha_i\|^2}}\alpha_i$.
+
+    So take this as $\beta$. Now let's prove $f(-)=(-,\beta)$. We can see $(\alpha_j,\beta)=\sum_{i=1}^n\frac{f(\alpha_i)}{\|\alpha_i\|^2}(\alpha_i,\alpha_j)=\frac{f(\alpha_j)}{\|\alpha_j\|^2}(\alpha_j,\alpha_j)=f(\alpha_j)$. Thus such inn. prod. which corresponds to linear functional exists and unique.
+}
+
+\nt{
+    Usually $V$ and $V^*$ are not naturally related. But if $V$ has inn. prod., then we can have an isomorphism.
+}
+
+\thm{}{
+    $T:$ endo. on f.d.v.s.$V/\bbR$ or $\bbC$. Then $\exists! T:V\rightarrow T$ s.t. $(T\alpha,\beta)=(\alpha,T^*\beta)$ where $T^*$ is a unique linear operator. If $F=\bbR$, $T^*$ is transpose and if $F=\bbC$, $T^*$ is conjugate transpose.
+}
+
+\pf{Proof}{
+    Fix $\beta\in V\Rightarrow (-,\beta)\in V^*$. Let's modify it a bit to get what we want. \Cref{th:inf} says that $\exists!\beta'\in V\s((T(-),\beta)=(-,\beta'))$. Define $T^*:V\rightarrow V:\beta\mapsto\beta'$. This mapping is well-defined. 
+    Also, easy to show that $T^*$ is linear, and since for any $\beta\in V$, $T^*\beta$ is uniquely determined, thus uniqueness holds.
+}
+
+\thm{}{
+    $T:$ endo. on f.d.v.s.$V/\bbF$ or $\bbC$, $\mfB=\{\alpha_1,\ldots,\alpha_n\}$ be an orthonormal basis. Let $A:=[T]_\mfB=[A]_{ij}$. Then $A_{ij}=(T\alpha_j,\alpha_i)$.
+}
+
+\pf{Proof}{
+    $\alpha\in V$. $\alpha=\sum_{i=1}^n(\alpha,\alpha_i)\alpha_i$. $A$ is defined by $A_{ij}$ s.t. $T(\alpha_j)=\sum_{i=1}^nA_{ij}\alpha_i$. Since $T\alpha_j=\sum_{i=1}^n(T\alpha_j,\alpha_i)\alpha_i$, $A_{ij}=(T\alpha_j,\alpha_i)$.
+}
+
+\cor{}{
+    $T:$ endo. on f.d.v.s.$V/\bbF$ or $\bbC$, $\mfB=\{\alpha_1,\ldots,\alpha_n\}$ be an orthonormal basis. Then $[T^*]_\mfB=([T]_\mfB)^*$ where L.H.S. is adjoint s.t. $(T\alpha,\beta)=(\alpha,T^*\beta)$ and R.H.S. is conjugate transpose.
+}
+
+\pf{Proof}{
+    $A:=[T]_\mfB=[A_{ij}]$, $B:=[T^*]_\mfB=[B_{ij}]$. Then $A_{ij}=(T\alpha_j,\alpha_i)$ and $B_{ij}=(T^*\alpha_j,\alpha_i)$. Then $\overline{B_{ij}}=(\alpha_i,T^*\alpha_j)\Rightarrow\overline{B_{ji}}=(\alpha_j,T^*\alpha_i)=A_{ij}$.
+}
+
+\exer{}{
+    $(T_1+T_2)^*=T_1^*+T_2^*$, $(cT)^*=\overline{c}T^*$, $(T_1T_2)^*=T_2^*T_1^*$.
+}
+
+\dfn{Hermitian}{
+    $T:$ endo. on f.d.v.s.$V/\bbR$ or $\bbC$. We say $T$ is Hermitian or self-adjoint if $T=T^*$. 
+}
+
+\section{Unitary Operators}
+
+\dfn{Preserve}{
+    $T:V\rightarrow W$ on inn. prod. space $V$ and $W$. Then we say $T$ preserves the inn. prod. if $\forall\alpha,\beta\in V\s(T\alpha,T\beta)=(\alpha,\beta)$. We say this is isometry.
+}
+
+\dfn{Isomorphism of Inner Product Spaces}{
+    An isomorphism of inn. prod. space is a linear transf. s.t. it is an isomorphism of vec. spaces and preserves the inn. prod.
+}
+
+\thm{}{
+    $T:V\rightarrow W$ with same dim f.d. inn. prod. spaces. TFAE:
+    \begin{enumerate}
+        \item[i)] $T$ preserves inn. prod.
+        \item[ii)] $T$ is an isomorphism of inn. prod. spaces
+        \item[iii)] For arbitrary orthonormal basis $\mfB$ of $V$, $T\mfB$ is an orthonormal basis for $W$
+        \item[iv)] For some orthonormal basis $mfB$ of $V$, $T\mfB$ is an orthonormal basis for $W$ 
+    \end{enumerate}
+}
+
+\pf{Proof}{
+    i) $\Rightarrow$ ii): Suppose $\exists\alpha\in N(T)$. Then $(T\alpha,T\alpha)=\|T\alpha\|^2=\|\alpha\|^2=0$. Thus $\alpha=0$. Since $\dim(V)=\dim(W)$, $T$ is one-to-one, Thus $T$ is an isomorphism.
+
+    ii) $\Rightarrow$ iii): Let $\mfB$ an arbitrary orthonormal basis $\{\alpha_1,\ldots,\alpha_n\}$. Then $(\alpha_i,\alpha_j)=\delta_{ij}$. Since $T$ preserves, $(T\alpha_i,T\alpha_j)=\delta_{ij}$. Isomorphic condition of $T$ implies then $T\mfB$ is basis for $W$ while $\{T\alpha_1,\ldots,T\alpha_n\}$ is an orthonormal set.
+
+    iii) $\Rightarrow$ iv): Trivial.
+
+    iv) $\Rightarrow$ i): Let $\mfB$ an orthonormal basis of $V$ s.t. $T\mfB$ is also an orthonormal basis.
+    \clm{}{
+        $\forall\alpha,\beta\in V\s((T\alpha,T\beta)=(\alpha,\beta))$.
+    }
+
+    \pf{Proof}{
+        $\alpha:=\sum x_i\alpha_i$, $\beta:=\sum y_i\alpha_i$. Then $T\alpha=\sum x_iT\alpha_i$ and $T\beta=\sum y_iT\alpha_i$. We can see $(T\alpha,T\beta)=(\sum x_iT\alpha_i,y_jT\alpha_j)=\sum_j\sum_ix_i\overline{y_j}(\alpha_i,\alpha_j)$ 
+        
+        while $(\alpha,\beta)=(\sum x_i\alpha_i,\sum y_j\alpha_j)=\sum_j\sum_i x_i\overline{y_j}(\alpha_i,\alpha_j)$, and both are $\delta_{ij}$.
+    }
+}
+
+\thm{}{
+    $T:V\rightarrow W$ on inn. prod. space with preserving $\iff$ $\|T\alpha\|=\|\alpha\|$.
+}
+
+\pf{Proof}{
+    ($\Rightarrow$): Trivial since $\|T\alpha\|^2=(T\alpha,T\alpha)=(\alpha,\alpha)=\|\alpha\|^2$.
+
+    ($\Leftarrow$): By using polarization identity, we can easily derive this direction.
+}
+
+\dfn{Unitary Operator}{
+    $T$ is unitary operator if it is an isomorphism on inn. prod. space.
+}
+
+\thm[iffuni]{}{
+    $U:V\rightarrow V$ on inn. prod. space. Then $U$ is unitary $\iff$ $U^*$ exists and $UU^*=U^*U=I$.
+}
+
+\pf{Proof}{
+    ($\Rightarrow$): If $U$ is unitary, then, isomorphism, so $\exists U^{-1}:V\rightarrow V$ and $(U\alpha,\beta)=(U\alpha,I\beta)=(U\alpha,UU^{-1}\beta)=(\alpha,U^{-1}\beta)$. Thus $U^{-1}=U^*$.
+
+    ($\Leftarrow$): Suppose $\exists U^*:V\rightarrow V$ s.t. $UU^*=U^*U=I$. Then $U$ is invertible where $U^*=U^{-1}$. Then $(U\alpha,U\beta)=(\alpha,U^*U\beta)=(\alpha,\beta)$.
+}
+
+\dfn{Unitary}{
+    $A:$ $n\times n$ mat. on $\bbR$ or $\bbC$. We say $A$ is unitary if $AA^*=A^*A=I$.  
+}
+
+\thm{}{
+    $U:V\rightarrow V$ on inn. prod. space. Then $U$ is unitary $\iff$ $[U]_\mfB$ for orthonormal basis $\mfB$ is a unitary mat.
+}
+
+\pf{Proof}{
+    $[U]_\mfB$ is unitary $\iff$ $U$ is unitary. Then iff condition follows from \Cref{th:iffuni}.
+}
+
+\cor{}{
+    If $U_1$ and $U_2$ are unitary, then $U_1U_2$ also. Furthermore, $U_1^{-1}$ is also unitary.
+}
+
+\dfn{Unitary Group - Optional}{
+    For f.d.inn. prod. space, let $U(V)$ be a collection of all unitary op. on $V$. This is a group, i.e., closed under mat. multiplication.
+}
+
+\nt{
+    \textit{\textbf{OPTIONAL.}}
+
+    When $V=\bbC^n$, $U(\bbC^n)=U(n)$: the $n$-th unitary group. 
+
+    $V=\bbR^n$, $A:$ $n\times n$ mat. on $\bbR$ s.t. $AA^t=A^tA=I$. Then $O(n)$ is the real orthogonal group.
+
+    $V=\bbC^n$, $A:$ $n\times n$ mat. on $\bbC$ s.t. $AA^t=A^tA=I$. Then $O(n,\bbC)$ is the complex orthogonal group.
+
+    $SU(n)=\{A\in U(n)\,|\,\det(A)=1\}$ is special unitary group.
+
+    $SO(n)=\{A\in O(n)\,|\,\det(A)=1\}$ is special orthogonal group. For example, $SO(2)$ is rotation and $SO(3)$, with $SO(3)\rtimes\bbR^3$ is rigid motion.
+}
+
+\section{Normal Operators}
+
+\dfn{Normal}{
+    $T:$ endo on f.d.inn. prod. space. $V/F$. We say $T$ is normal if $TT^*=T^*T$.
+}
+
+\nt{
+    \textbf{Q. When do we have an orthonormal basis $\mfB$ on $V$ s.t. vec. in $\mfB$ are also char. vec. of $T$?}
+}
+
+\thm[1]{}{
+    $T:$ endo on f.d.inn. prod. space. $V/F$. Suppose $T$ is normal. For char. vec. $\alpha$ of $T$, $c\in F$ is char. value $\iff$ $\overline{c}$ is char. value for $T^*$ with char. vec. $\alpha$.
+}
+
+\pf{Proof}{
+    \clm[1]{}{
+        If $U$ is normal, then $\|Uv\|=\|U^*v\|$.
+    }
+    \pf{Proof}{
+        $\|Uv\|^2=(Uv,Uv)=(v,U^*Uv)=(v,UU^*v)=(U^*v,U^*v)=\|U^*v\|^2$.
+    }
+
+    $\forall c\in F$, $U:=T-cI$ is normal for normal $T$. Then $U^*=T^*-\overline{c}I$. $UU^*=U^*U$ is obvious. Thus $\|(T-cI)\alpha\|=\|(T^*-\overline{c}I)\alpha\|$ by Claim \ref{clm:1}.
+    Thus $(T-cI)\alpha=0$ $\iff$ $(T^*-\overline{c}I)\alpha=0$.
+}
+
+\thm[2]{}{
+    $T$ as \Cref{th:1} but not normal. Suppose $\exists$ orthonormal basis $\mfB$ s.t. $[T]_\mfB$ is upper triangular. Then $T$ is normal $\iff$ $[T]_\mfB$ is diagonal.
+}
+
+\pf{Proof}{
+    ($\Leftarrow$): Let $A:=[T]_\mfB$. $A^*=[T^*]_\mfB$. $A$ is diagonal, so $A^*$ also. Trivially $AA^*=A^*A$, thus $TT^*=T^*T$, i.e., $T$ is normal.
+
+    ($\Rightarrow$): Suppose $T$ is normal. We are given that $A$ is upper triangular. Let $\mfB=\{\alpha_1,\ldots,\alpha_n\}$. Then 
+    \begin{equation*}
+        A=[T]_\mfB=\begin{bmatrix}
+            a_{11} & \cdots & a_{1n} \\ 0 & \ddots & \vdots \\ 0 & 0 & a_{nn}
+        \end{bmatrix}
+    \end{equation*}
+    where $T$ is normal, and $\alpha_1$ is char. vec., where $a_{11}$ are char. value w.r.t. $\alpha_1$. By \Cref{th:1}, $T^*\alpha_1=\overline{a_{11}}\alpha_1$. On the other hand, since $[T^*]_\mfB=A^*$, $T^*\alpha_1=\overline{a_{11}}\alpha_1+\overline{a_{12}}\alpha_2+\cdots+\overline{a_{1n}}\alpha_n$.
+    Thus
+    \begin{equation*}
+        A=[T]_\mfB=\begin{bmatrix}
+            a_{11} & \cdots & 0 \\ 0 & \ddots & \vdots \\ 0 & 0 & a_{nn}
+        \end{bmatrix}.
+    \end{equation*}
+    Applying this algorithm to each $\alpha_i$ leads $A$ is diagonal.
+}
+
+\mlemma[1]{}{
+    $T:$ endo on f.d.inn. prod. space. $V/\bbR$ or $\bbC$. Let $W\subset V$ be $T$-inv. subspace. Then $W^\perp$ is automatically $T^*$-inv.
+}
+
+\pf{Proof}{
+    Let $\beta\in W^\perp$. N.T.S. $T^*\beta\in W^\perp$, i.e., $\forall\alpha\in W\s((\alpha,T^*\beta)=(T\alpha,\beta)=0)$. Since $W$ is $T$-inv., this clearly holds.
+}
+
+\thm[3]{}{
+    $T:$ endo on f.d.inn. prod. space. $V/\bbC$. Then $\exists$ orthonormal basis $\mfB$ for $V$ s.t. $[T]_\mfB$ is upper triangular mat.
+}
+
+\pf{Proof}{
+    We prove it by induction on $n=\dim(V)$. If $n=1$, it is obvious. So suppose $n>1$ and assume \Cref{th:3} holds for any inn. prod. space with $\dim<n$. Since $F=\bbC$, applying Fundamental Theorem of Algebra to $T^*$, $\exists$ char. value $c\in\bbC$, and a char. vec. $\alpha$ s.t. $T^*\alpha=c\alpha$. 
+    By replacing $\alpha$ to $\frac{\alpha}{\|\alpha\|}$, $\alpha$ itself has length 1. Define $W=\spans\{\alpha\}^\perp$. Since $\spans\{\alpha\}$ is $T^*$-inv, which leads $W=\spans\{\alpha\}^\perp$ is $T$-inv. by the \Cref{lem:1}. Then we can see 
+    \begin{center}
+        \begin{tikzpicture}
+            \node (V1) {$V$};
+            \node (V2) [right=of V1] {$V$};
+            \node (T) [left= 0.05cm of V1] {$T:$};
+            \node (W1) [below= 0.5cm of V1] {$W$};
+            \node (TW) [left= 0.05cm of W1] {$T|_W$:};
+            \node (W2) [below= 0.5cm of V2] {$W$};
+            \node (dim) [right= 0.1cm of V2] {$\dim(V)=n$};
+            \node (dim) [right= 0.1cm of W2] {$\dim(W)=n-1$};
+            \draw[->] (V1) -- (V2);
+            \draw[->] (W1) -- (W2);
+            \draw[<->] (V1) -- (W1);
+            \draw[<->] (V2) -- (W2);
+        \end{tikzpicture}
+    \end{center}
+    By induction hypothesis, $\exists$ orthonormal basis $\mfB'=\{\alpha_1,\ldots,\alpha_{n-1}\}$ s.t. $[T|_W]_{\mfB'}$ is upper triangular. Take $\alpha_n:=\alpha$, and $\mfB=\mfB'\cup\{\alpha_n\}$. Then 
+    \begin{equation*}
+        [T]_\mfB=\begin{bmatrix}
+            [T|_W]_{\mfB'} & * \\ 0 & * 
+        \end{bmatrix}.
+    \end{equation*}
+    Thus $[T]_\mfB$ is upper triangular.
+}
+
+\cor{}{
+    $T:$ endo on f.d.inn. prod. space. $V/\bbC$ where $T$ is normal. Then $V$ has orthonormal basis consisting of char. vec. of $T$. In particular, $T$ is diagonalizable.
+}
+
+\cor{}{
+    With \Cref{th:2} and \Cref{th:3}, if $A\in M_{n\times n}(\bbC)$, $\exists$ unitary mat. $P\in U(n)$ s.t. $P^{-1}AP$ is upper triangular. In case $AA^*=A^*A$, $P^{-1}AP$ is diagonal, i.e., $A$ is normal implies $A$ is unitary diagonalizable.
+}
+
+\exmp{}{
+    $T:$ endo on f.d.inn. prod. space. $V/F$. If $T$ is hermitian, i.e., self-adjoint, then $T$ is normal. Also, if $T$ is unitary operator, it is normal.
+}
+
+\end{document}

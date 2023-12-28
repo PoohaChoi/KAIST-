@@ -1,0 +1,170 @@
+\documentclass[C:/LATEX/MAS212/Summary/MAS212.tex]{subfiles}
+
+\begin{document}
+
+\section{Commutative Rings}
+
+\dfn{Ring}{
+    $R:$ a ring with two operation $+,\cdot$ s.t. $<R,+>$ form abelian group and $\cdot$ satisfies $a\cdot(b+c)$ and $(b+c)\cdot a$. A ring with unity is a ring with $1\in R$ s.t. $\forall a\s(1\cdot a=a\cdot1=a\in R)$.
+}
+
+\section{Determinant Functions}
+
+\dfn{$n$-Linear and Alternating}{
+    $K:$ a ring. A function $D:K^{n\times n}\rightarrow K$. This is considered as a function on $n$ rows and $n$ columns. 
+
+    i) We say $D$ is $n$-linear if $D$ is a linear function on the $i$-th row while fixing others. $D(ca_1+a_1',a_2,\ldots,a_n)=cD(a_1',a_2,\ldots,a_n)+D(a_1,a_2,\ldots,a_n)$.
+
+    ii) An $n$-linear function $D:K^{n\times n}\rightarrow K$ is called alternating if $D(A)=0$ when $\forall i\neq j\s(a_i=a_j)$.
+}
+
+\exer{}{
+    $D:K^{n\times n}\rightarrow K:$ alternating $n$-linear function. $A\in K^{n\times n}$. $A':=$ matrix obtained by interchanging $i,j$-th rows and fix others. Then $D(A')=-D(A)$.
+}
+
+\pf{Proof}{
+    Using given property. Exercise!
+}
+
+\dfn{Determinant Function}{
+    $K:$ commu. ring with 1. $D:K^{n\times n}\rightarrow K$ be a function. We say $D$ determinant function if $D$ is $n$-linear, alternating, and $D(I_n)=1$.
+}
+
+\thm{}{
+    $\exists!$ such $D$ that we call the determinant function.
+}
+
+\thm{}{
+    Concrete description of $D$ in terms of permutation.
+}
+
+\dfn{Minor}{
+    $K:$ commu. ring with 1, $n>1$. Let $A\in K^{n\times n}$ and $(i,j)$ for $1\leq i,j\leq n$. $A(i|j)4$ is $(n-1)\times(n-1)$ mat. with $i$-th row and $j$-th col. removed. We call this $(i,j)$-minor.
+}
+
+\dfn{}{
+    $D(A(i|j))=D_{ij}(A)$.
+}
+
+\thm{}{
+    $n>1$, $D:K^{(n-1)\times(n-1)}\rightarrow K$, alternating $(n-1)$-linear function. Let $1\leq j\leq n$. $A\in K^{n\times n}$. Define $E_j(A):=\sum_{i=1}^n(-1)^{i+j}A_{ij}D_{ij}(A)$. 
+    Then $E_j$ is an alternating $n$-linear function on $K^{n\times n}$. Also, if $D:K^{(n-1)\times(n-1)}\rightarrow K$ is a determinant function, so is $E_j$.
+}
+
+\pf{Proof}{
+    $A:$ $n\times n$ mat. Note that $D_{ij}(A)$ is indep. of the entries of $i$-th row and $j$-th col. $D$ is $(n-1)$-linear on $K^{(n-1)\times(n-1)}$, so $D_{ij}(A)$ is linear, further more $A_{ij}D_{ij}(A)$ is $n$-linear.
+    Thus $E_j$ is $n$-linear being a lin. comb. of $n$-linear functions. To prove alternating, suppose $A$ has two equal rows at $\alpha_k,\alpha_{k+1}$. Take $i\neq k,k+1$. Then $D_{ij}(A)=0$ because $A(i|j)$ has two identical rows and $D$ is alternating.
+    Then $E_j(A)=(-1)^{k+j}D_{kj}(A)+(-1)^{k+1+j}D_{k+1j}(A)$. Here, $A_{kj}=A_{k+1j}$, $D_{k+1j}=D_{kj}$, thus 0. This shows $E_j$ is alternating $n$-linear. Also, since $I_n(i|j)=I_{n-1}$, we can see trivailly $E_j(I_n)=1$.
+}
+
+\cor{}{
+    For all $n\in\bbN$, $\exists$ det, function. 
+}
+
+\pf{Proof}{
+    If $n=1$, $D_1=Id_k$ is a det. function. Suppose $n>1$ and cor. holds for $1\leq i< n$. Then $D_{n-1}$ is a det. function, thus we can take $D_n=E_j$ written in terms of $D_{n-1}$. 
+}
+
+\section{Permutations and the Uniqueness of Determinants}
+
+\dfn{Permutation}{
+    A permutation $\sigma$ of $S$ is a bijective function $\sigma:S\rightarrow S$. We have $|S|!$ permutations. 
+}
+
+\dfn{Transposition}{
+    $\tau\in S_n$ is called transposition if it interchange just the values of 2 members.
+}
+
+\nt{
+    Every peprmutation can be written as a product of disjoint cycles. Also, every cycle is a product of non-disjoint transpositions.
+}
+
+\thm{}{
+    $S_n$ be the permutations on $n$ letters. $\sigma\in S_n$. For any permutation, the number of transpositions needed to express $\sigma\mod2$ is an invariant of $\sigma$. Also, we define $\text{sgn}(\sigma)$ as 1 if mod is even, -1 if odd.
+}
+
+\cor{}{
+    $\sigma_1,\sigma_2\in S_n$. Then $\text{sgn}(\sigma_1\sigma_2)=\text{sgn}(\sigma_1)\text{sgn}(\sigma_2)$.
+}
+
+\thm{The Uniqueness of Determinant}{
+    Let $D:K^{n\times n}\rightarrow K$ be a function that is alternating $n$-linear with $D(I_n)=1$. Then $D$ is unique with
+    $D=\sum_{\sigma\in S_n}\text{sgn}(\sigma)A(1,\sigma_1)\cdots A(n,\sigma_n)$. 
+}
+
+\pf{Proof}{
+    Suppose $e_1,\ldots,e_n$ as rows of $I_n$ and $\alpha_i$ as rows of $A$. Then $\alpha_i=\sum_{j=1}^nA_{ij}e_j$, so $D(A)=D(\alpha_1,\ldots,\alpha_n)=D(\sum_{j=1}^nA_{1j}e_j,\ldots,\alpha_n)=\sum_{j=1}^nA_{ij}D(e_j,\ldots,\alpha_n$), thus
+    
+    $D(A)=\sum_{j_1=1}^n\cdots\sum_{j_n=1}^nA_{1j_1}\cdots A_{nj_n}D(e_{j_1},\ldots,e_{j_n})$. If any $j_p=j_q$, then $D(e_1,\ldots,e_n)=0$. Thus all entries in this are different.
+    So $j_i$ are permutation of $\{1,\ldots,n\}$. If $\sigma$ is the permutation, $D(e_{j_1},\ldots,e_{j_n})=\text{sgn}(\sigma)D(I_n)$. Therefore det. function is unique.
+}
+
+\thm{}{
+    $\det(AB)=\det(A)\det(B)$.
+}
+
+\pf{Hint}{
+    $B$ is fixed. Define $D(A):=\det(AB)$ as $n$-linear algternating. Then $D(A)=\det(A)D(I_n)$. 
+}
+
+\section{Additional Properties of Determinants}
+
+\cor{}{
+    $\det(A^t)=\det(A)$
+}
+
+\pf{Proof}{
+    $\det(A^t)=\sum_\sigma\text{sgn}(\sigma)A(\sigma_1,1)\cdots A(\sigma_n,n)$. Take $i=\sigma^{-1}j$. $A(\sigma i,j)=A(j,\sigma^{-1}j)$. Thus $\det(A^t)=\sum_{\sigma^{-1}}\text{sgn}(\sigma^{-1})A(1,\sigma^{-1}1)\cdots A(n,\sigma^{-1}n)=\det(A)$.
+}
+
+\cor{}{
+    $A:$ $n\times n$ mat. and $B:$ $i$-th row $\leftarrow r_i+cr_j$. Then $\det(A)=\det(B)$. 
+}
+
+\pf{Proof}{
+    $\det(r_1+cr_2,r_2)=\det(r_1,r_2)+2\det(r_2,r_2)=\det(r_1,r_2)=\det(A)$.
+}
+
+\thm{}{
+    If 
+    \begin{equation*}
+        M=\begin{bmatrix}
+            A & B \\ 0 & C
+        \end{bmatrix}
+    \end{equation*}
+    for block mat. $A,B,C$, then $\det(M)=\det(A)\det(B)$. 
+}
+
+\pf{}{
+    Fix $A,B$, then $D(A,B,C)$ is a function of $C$. Then $D$ is alternating, linear function.
+}
+
+\nt{
+    Now, we can use cofactor expansion to derive determinant.
+}
+
+\dfn{Adj}{
+    $\adj(A):=C^t$ where each entries of $C$ are cofactor expansion of $A$, i.e., $C=[C_{ij}]$.
+}
+
+\cor{}{
+    $A\cdot\adj(A)=\adj(A)\cdot A=\det(A)I_n$.
+}
+
+\cor{}{
+    $A^{-1}=\adj(A)/\det(A)$.
+}
+
+\section{Modules}
+
+\textit{\textbf{This Chapter is Intentionally Skipped at Lectures}}
+
+\section{Multilinear Functions}
+
+\textit{\textbf{This Chapter is Intentionally Skipped at Lectures}}
+
+\section{The Grassman Ring}
+
+\textit{\textbf{This Chapter is Intentionally Skipped at Lectures}}
+
+\end{document}

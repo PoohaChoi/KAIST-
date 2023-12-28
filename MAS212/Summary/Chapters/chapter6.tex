@@ -1,0 +1,476 @@
+\documentclass[C:/LATEX/MAS212/Summary/MAS212.tex]{subfiles}
+\usepackage{tikz}
+\begin{document}
+\section{Introduction}
+
+\section{Characteristic Values}
+
+\dfn{Characteristic Value and Vectors, Spaces}{
+    $T:$ endo. on f.d.v.s $V/F$. 
+    A characteristic value of $T$ is $c\in F$ s.t. $\exists\alpha\in V\backslash\{0\}$ s.t. $T\alpha=c\alpha$.
+    This $\alpha$ is also called a characteristic vector of $T$ associated to $c$.
+    Also, $E_c:=\{\alpha\in V\;|\;T\alpha=c\alpha\}$ is called the characteristic space of $T$ associated to $c$.
+}
+
+\thm[]{}{
+    $T:$ endo. on f.d.v.s. $V/F$. TFAE:
+    \begin{itemize}
+        \item[i)] $c$ is a characteristic value of $T$
+        \item[ii)] Operator $T-cI$ is singular (not invertible)
+        \item[iii)] $\det(T-cI)=0$ 
+    \end{itemize}
+}
+
+\pf{Proof}{
+    ii) $\iff$ iii) is trivial. 
+    If i) holds, $\exists v\in V\backslash\{0\}\s(Tv=cv)$ $\Rightarrow$ $(T-cI)v=0$.
+    Thus this is not injective, so singular. Thus i) $\iff$ ii).
+}
+
+\dfn{Characteristic Polynomials}{
+    $f(x):=\det(xI-A)\in F[x]$ is called characteristic polynomial of $T$.
+    Then $f$ is monic with $\deg(f)=n$ for $n\times n$ mat. A and $\forall c$ which is characteristic values, $f(c)=0$.
+}
+
+\exer{}{
+    Check the choice of basis doesn't affect the char. poly. of $T$.
+}
+
+\pf{Proof}{
+    $B:=P\inv AP$. $\det(xI-B)=\det(xI-P\inv AP)=\det(P\inv(xI-A)P)=\det(xI-A)$.
+}
+
+\dfn{Diagonalizable}{
+    $T:$ endo. on f.d.v.s. $V/F$. 
+    If $\exists\mfB=\{v_1,v_2,\ldots,v_n\}$ s.t. each $v_i$ are char. vec. of $T$, we say $T$ is diagonalizable.
+}
+
+\nt{
+    $[T]_\mfB=\begin{bmatrix}
+        c_1 & & \\
+        & \ddots & \\
+        & & c_n
+    \end{bmatrix}$ with (may be) repititions. Then $[T]_\mfB$ is diagonal mat.
+    Furthermore, we can see $f(x)=\det(xI-[T]_\mfB)$ is decomposed complety into a product of linear factors.
+}
+
+\exmp{}{
+    $A:$ $n\times n$ mat. on f.d.v.s. $V/\bbR$. 
+    If char. poly. has no real sol., then it is not diagonalizable.
+}
+
+\mlemma[]{}{
+    $T:$ endo. on f.d.v.s. $V/F$. 
+    Suppose $c_1,c_2,\ldots,c_k$ are all possible distinct char. values of $T$ and $W_i:=\text{Null}(T-c_iI)$.
+    Then $W:=W_1+\cdots+W_k\Rightarrow \dim(W)=\dim(W_1)+\cdots+\dim(W_k)$.
+}
+
+\pf{Proof}{
+    Trivially $\dim(W)\leq\dim(W_1)+\cdots+\dim(W_k)$. Thus we have to check $\geq$ part. 
+    Suppose $\forall\beta_i\in W_i\s(\beta_1+\cdots+\beta_k=0).$ We will show $\forall\beta_i=0$.
+    Suppose $\beta_1+\beta_2=0$. Then $T\beta_1+T\beta_2=c_1\beta_1+c_2\beta_2=0$. 
+    We can derive $(c_1-c_2)\beta_2=0$. Since $c_1\neq c_2$, $\beta_2=0$ thus $\beta_1=0$. 
+    Inductively, we can derive $\forall\beta_i=0$. Thus $\dim(W)=\dim(W_1)+\cdots+\dim(W_k)$.
+}
+
+\thm[]{}{
+    $T:$ endo. on n-d.v.s. $V/F$. $c_1,c_2,\ldots,c_k$ are all possible distinct char. values of $T$ and $W_i:=\text{Null}(T-c_iI)$. TFAE:
+    \begin{enumerate}
+        \item[i)] $T$ is diagonalizable
+        \item[ii)] Char. poly. $p(x)=\prod_{i=1}^k(x-c_i)^{d_i}$ where $d_i=\dim(W_i)$
+        \item[iii)] $d_1+d_2+\cdots+d_k=n=\dim(V)$  
+    \end{enumerate}
+}
+
+\pf{Proof}{\;
+    i)$\Rightarrow$ ii): $\exists\bigcup_{i=1}^k\mfB_i$, basis of V where each $\mfB_i$ are the part belonging to $c_i$.
+    Then, $\spans(\mfB_i)=W_i$, $\dim(W_i)=d_i\Rightarrow p(x)=\prod_{i=1}^k(x-c_i)^{d_i}$ where $d_i=\dim(W_i)$. 
+    
+    ii)$\Rightarrow$ iii): Trivial. 
+    
+    iii)$\Rightarrow$ i): $W_1+\cdots+W_k=W\Rightarrow d_1+\cdots+d_k=n$. Thus $W=V$. 
+    Thus $V$ has a basis consisting of char. vec., so diagonalizable. 
+}
+
+\section{Annihilating Polynomials}
+
+\thm[]{}{
+    $T:$ endo. on n-d.v.s. $V/F$. $p(x)$ as char. poly. of $T$, and $m(x)$ as min. poly. of $T$.
+    Ignoring multiplicities, $p(x)$ and $m(x)$ has same sol. in $F$.
+}
+
+\pf{Proof}{
+    $m(c)=0\Rightarrow m(x)=(x-c)q(x)$. $m$ is minimal implies $q(T)\neq0$. Thus $\exists\beta\in V$ s.t. $q(T)\beta\neq0$.
+    This leads $(T-cI)q(T)\beta=0$ since $(T-cI)q(T)\beta=m(T)\beta=0\beta$.
+    Thus $q(T)\beta$ is char. vec., which leads $c$ as a char. value of $T$, so $p(c)=0$. \newline
+    Now if $p(c)=0$, $\exists\alpha\in V\backslash\{0\}$ s.t. $T\alpha=c\alpha$. Thus $T^n\alpha=c^n\alpha$.
+    So for any poly. $f(x)\in F[x]$, $f(T)\alpha=f(c)\alpha$. In particular, $m(T)\alpha=m(c)\alpha\Rightarrow m(c)\alpha=0\alpha\Rightarrow m(c)=0$.
+}
+
+\cor{}{
+    $p(x)=\prod_{i=1}^k(x-c_i)^{d_i}\Rightarrow m(x)=\prod_{i=1}^k(x-c_i)^{r_i}$ where $1\leq r_i\leq d_i$.
+}
+
+\thm[]{Cayley-Hamilton}{
+    $T:$ endo. on n-d.v.s. $V/F$. $p(x)$ as char. poly. of $T$. Then $p(T)=0$. In particular, $m(x)\,|\,p(x)$.
+}
+
+\pf{Proof}{
+    $K:=\{h(T)\;|\;h(x)\in F[x]\}$ be image of $ev_T:\,F[x]\rightarrow L(v,v)$. Let $\mfB=\{\alpha_1,\ldots,\alpha_n\}$ be a basis of $V$.
+    $A:=[T]_\mfB$ so that $T\alpha_i=\sum_{j=1}^nA_{ji}\alpha_j\s(i\in[n])\Rightarrow\sum_{j=1}^n(\delta_{ij}T-A_{ji}I)\alpha_j=0$.
+    Then $B:=[B_{ij}]$ where $B_{ij}:=(\delta_{ij}T-A_{ji}I)$. We know $\adj(B)\cdot B=B\cdot\adj(B)=\det(B)I$.
+    By construction, $\sum_{j=1}^nB_{ij}\alpha_j=0\Rightarrow\sum_{j=1}^n\adj(B)_{ki}B_{ij}\alpha_j=0$. Taking sums over $i$ leads
+    $0=\sum_{i=1}^n\sum_{j=1}^n\adj(B)_{ki}B_{ij}\alpha_j=\sum_{j=1}^n\left(\sum_{i=1}^n\adj(B)_{ki}B_{ij}\right)\alpha_j=\sum_{j=1}^n\delta_{kj}\det(B)\alpha_j=\det(B)\alpha_k$.
+    Since $\{\alpha_1,\ldots,\alpha_n\}$ is basis, $\det(B)=0$, which is char. poly. of $T$.
+}
+
+\section{Invariant Subspaces}
+
+\thm[Theorem6.4.1]{}{
+    $T:$ endo. on f.d.v.s. $V/F$. $c_1,c_2,\ldots,c_k$ are all possible distinct char. values of $T$. 
+    Then $T$ is diagonalizable $\iff$ $m(x)=(x-c_1)(x-c_2)\cdots(x-c_k)$.
+}
+
+\pf{Proof}{
+    Only for $(\Rightarrow)$ here: Let $f(x)$ be a char. poly. of $T$. Then $m(x)\,|\,f(x)$. 
+    Thus $m(x)=(x-c_1)^{e_1}(x-c_2)^{e_2}\cdots(x-c_k)^{e_k}$. 
+    \clm[exp1]{}{
+        $(T-c_1I)(T-c_2I)\cdots(T-c_kI)=0$ 
+    }
+    \pf{Proof}{
+        Since $T$ is diagonalizable, it has a basis $\{\alpha_1,\ldots,\alpha_n\}$ consisting of char. vec.
+        Thus $T\alpha_j=c_{i(j)}\alpha_j$ where $c_{i(j)}\in\{c_1,\ldots,c_k\}$. This leads $(T-c_{i(j)}I)\alpha_j=0$.
+        Take $S:=(T-c_1I)\cdots(T-c_kI)$. Then for each $j\in[n]$, $S(\alpha_j)=0$. since each $\alpha_i$ form basis, $\forall v\in V\s(S(v)=0)$. Thus Claim \ref{clm:exp1} holds.
+    }
+    Oppisite of this proof is at \Cref{th:Theorem6.4.3}.
+}
+
+\cor{}{
+    $T:$ endo. on n-d.v.s. $V/F$. Suppose $T$ has $n$ distinct char. values.
+    If $f(x)=\prod_{i=1}^n(x-c_i)$ where distinct $c_i$, then $m(x)=f(x)$ thus it is diagonalizable.
+}
+
+\dfn{$T$-Invariant Subspaces}{
+    $T:$ endo. on n-d.v.s. $V/F$. Take subspace $W$. We say $W$ is $T$-invariant or invariant under $T$ if $T(W)\subset W$.
+    If $W$ is $T$-invariant, then $T$ induces a endo. on $W$, denoted as $T|_W$.
+    \begin{center}
+        \begin{tikzpicture}
+            \node (V1) {$V$};
+            \node (V2) [right=of V1] {$V$};
+            \node (T) [left= 0.05cm of V1] {$T:$};
+            \node (W1) [below= 0.5cm of V1] {$W$};
+            \node (TW) [left= 0.05cm of W1] {$T|_W$:};
+            \node (W2) [below= 0.5cm of V2] {$W$};
+            \draw[->] (V1) -- (V2);
+            \draw[->] (W1) -- (W2);
+            \draw[<->] (V1) -- (W1);
+            \draw[<->] (V2) -- (W2);
+        \end{tikzpicture}    
+    \end{center}
+}
+
+\exmp{}{
+    $W=0$ is trivailly $T$-invariant. Also, char. space $E_c$ is $T$-invariant.
+}
+
+\mlemma{}{
+    Suppose $W$ is $T$-invariant. $m(x)$ as min. poly. and $f(x)$ as char. poly. of $T$. 
+    Then $m_W(x)\,|\,m(x)$ and $f_W(x)\,|\,f(x)$ for each restriction to $W$.
+}
+
+\pf{Proof}{
+    Choose a basis $\mfB'=\{\alpha_1,\ldots,\alpha_k\}$ of $W$ and extend it to $\mfB=\{\alpha_1,\ldots,\alpha_k,\alpha_{k+1}\ldots,\alpha_n\}$ which is a basis of $V$.
+    Since $W$ is $T$-inv., $T\alpha_i\in\spans\{\mfB'\}$. So $A=[T]_\mfB=\begin{bmatrix}
+        B & C \\ 0 & D
+    \end{bmatrix}$ where $B=[T|_W]_{\mfB'}$. Furthermore, $f(x)=\det(xI-A)=\det(xI-B)\cdot\det(xI-D)$.
+    clearly, $f_W(x)\,|\,f(x)$. 
+
+    Note that $A^r=\begin{bmatrix}
+        B^r & C_r \\ 0 & D^r
+    \end{bmatrix}$. Therefore, $\forall p(x)\in F[x]\s(p(T)=0)$, we can see $p_W(x)\,|\,p(x)$. Especially, $m_W(x)\,|\,m(x)$.
+}
+
+\dfn{$T$-Conductors}{
+    $T:$ endo. on f.d.v.s. $V/F$. $W$ be $T$-inv. subspaces. Suppose $\alpha\in V$. We define $T$-conductor as
+    $S_T(\alpha\,;\,W):=\{g(x)\in F[x]\;|\;g(T)\alpha\in W\}$. 
+}
+
+\mlemma{}{
+    $S_T(\alpha\,;\,W)$ is a nonzero ideal.
+}
+
+\pf{Proof}{
+    char. poly. $f(x)$ satisfies $f(T)=0\in W\Rightarrow f(x)\in S_T(\alpha\,;\,W)$.
+    Trivially it is closed. Also, since polynomials are commutative and $W$ is $T$-inv., it satisfies properties of ideals.
+}
+
+\dfn{$T$-Conductor as Generator}{
+    The unique monic poly. generator of $S_T(\alpha\,;\,W)$ is also often called the $T$-conductor of $\alpha$ to $W$.
+}
+
+\cor{}{
+    Min. poly. and char. poly. is in $S_T(\alpha\,;\,W)$, thus generator of that conductor divides both.
+}
+
+\dfn{Triangulable}{
+    $T:$ endo. on f.d.v.s. $V/F$. We say $T$ is triangulable if $V$ has a basis $\mfB$ s.t. $[T]_\mfB$ is an upper triangular mat.
+}
+
+\cor{}{
+    $T$ is diagonalizable $\Rightarrow$ $T$ is triangulable.
+}
+
+\mlemma[lemma]{}{
+    $T:$ endo. on f.d.v.s. $V/F$. Suppose $m(x)=\prod_{i=1}^k(x-c_i)^{r_i}$ where $c_i$ are all distinct and $r_i\geq1$. 
+    If $W$ is $T$-inv. subspace, then $\exists\alpha\in V\backslash W\s((T-cI)\alpha\in W)$ for some char. value $c=c_i$.
+}
+
+\pf{Proof}{
+    Let $\beta\in V\backslash W$ and let $g(x)$ be the min. $T$-conducting poly. taking $\beta$ to $W$. 
+    Then $g(x)\,|\,m(x)$. Since $\beta\not\in W$, $\deg(g(x))\geq1$. Then $g(x)=\prod_{i=1}^k(x-c_i)^{e_i}$ for $e_i\leq r_i$. 
+    since $\deg(g)\geq1$, $\exists j\s(e_j\geq1)$, so $(x-c_j)\,|\,g(x)\Rightarrow g(x)=(x-c_j)h(x)$. $\alpha:=h(T)\beta$.
+    This cannot be in $W$ since $g(x)$ is the min. deg. fellow in $S_T(\beta\,;\,W)$.
+    But $(T-c_jI)\alpha=g(T)\beta\in W$. Thus $(x-c_j)=S_T(\alpha\,;\,W)$.
+}
+
+\thm{}{
+    $T:$ endo. on n-d.v.s. $V/F$. $T$ is triangulable $\iff$ $m(x)=\prod_{i=1}^k(x-c_i)^{r_i}$ for $r_i\geq1$.
+}
+
+\pf{Proof}{
+    ($\Rightarrow$): Since $T$ is triangulable, $\exists\mfB$ s.t. $[T]_\mfB$ is triangular. 
+    Thus char. poly. $f(x)=\prod_{i=1}^k(x-c_i)^{e_i}$ for $\sum e_i=n$, $e_i\geq1$ and distinct $c_i$.
+    Since $m(x)\,|\,f(x)$ our statement holds.
+
+    ($\Leftarrow$): Suppose $m(x)=\prod_{i=1}^k(x-c_i)^{r_i}$. We use the \Cref{lem:lemma} repeatedly over different choices of $W$.
+    Take $W=0$ then $\exists\alpha_1\in V\backslash W\s((T-d_1)\alpha_1=0)$ for some $d_1$. Take $W_1=\spans\{\alpha_1\}$. 
+    Then $\exists\alpha_2\in V\backslash W_1\s((T-d_2)\alpha_2=0)$. Repeating this, we can derive $T\alpha_1=d_1\alpha_1$, $T\alpha_2=*\alpha_1+d_2\alpha_2$, and so on, thus
+    $[T]_{\{\alpha_1,\ldots,\alpha_n\}}=\begin{bmatrix}
+        d_1 & * & * \\
+        0 & \ddots & * \\
+        0 & 0 & d_k
+    \end{bmatrix}$, which is upper triangular mat.
+}
+
+\thm[Theorem6.4.3]{}{
+    $T:$ endo. on n-d.v.s. $V/F$. $T$ is diagonalizable $\iff$ $m(x)=(x-c_1)(x-c_2)\cdots(x-c_k)$.
+}
+
+\pf{Proof}{
+    Forward is at \Cref{th:Theorem6.4.1}. $(\Leftarrow)$: Let $W\subset V$ be subspace spanned by all char. vec. Suppose $W\varsubsetneq V$ toward contradiction.
+    Since $T\alpha=c\alpha$  for each char. vec. $\alpha$ of $T$, $W$ is $T$-inv. So by \Cref{lem:lemma}, $\exists\alpha\in V\backslash W\s((T-c_jI)\alpha=:\beta\in W)$.
+    Note that $\beta\in W\backslash\{0\}$. So we can write $\beta=\beta_1+\cdots+\beta_k$ where $\beta_i\in E_{c_i}$. Here, $T\beta_i=c_i\beta_i$, and $T^k\beta_i=c_i^k\beta_i$.
+    Thus $f(T)\beta=f(T)\beta_1+\cdots+f(T)\beta_k$. $m(x):=(x-c_j)h(x)$ where $h(x)=\prod_{i\neq j}(x-c_i)$. Clearly $h(c_j)\neq0$. 
+    Consider $h(x)-h(c_j)=(x-c_j)q(x)\Rightarrow h(T)\alpha-h(c_j)\alpha=q(T)(T-c_jI)\alpha=q(T)\beta\in W$.
+    Also, $m(T)\alpha=(T-c_jI)h(T)\alpha=0\Rightarrow h(T)\alpha\in E_{c_j}\subset W$. Thus $(h(T)\alpha\in W)\wedge(q(T)\beta\in W)$ implies $h(c_j)\alpha\in W$, so $h(c_j)=0$.
+    This is contradiction to the fact that min. poly. has distinct roots, so $W=V$, which means $V$ has basis consisting of char. vec., and $T$ is diagonalizable.
+}
+
+\cor{}{
+    If $F$ is algebraically closed, then $T$ is always triangulable.
+}
+
+\section{Simultaneous Triangulation; Simultaneous Diagonalization}
+
+\dfn{Commuting Family}{
+    $T_i:$ endo. on n-d.v.s. $V/F$. We say $\mathcal{F}$ is a commuting family of endo. if $\forall T_i,T_j\in \mcF\s(T_iT_j=T_jT_i)$.
+}
+
+\dfn{$\mcF$-Invariant}{
+    If $\forall T_i\in\mcF\s(W \text{is $T_i$-invariant})$, then we say $W$ is $\mcF$-inv.
+}
+
+\mlemma{}{
+    Suppose $\mcF$ is a commuting family of triangulable endo. Suppose $W\varsubsetneq V$, which is $\mcF$-inv. Then $\exists\alpha\in V\backslash W\s(\forall T_i\in\mcF\s((T_i-cI)\alpha\in\spans\{W,\alpha\}))$.
+}
+
+\pf{Proof}{
+    We may assume $\{T_1,\ldots,T_r\}$, a maximal lin. indep. subset of $\mcF$. Applying \Cref{lem:lemma} to $T_1$, $\exists\beta_1\in V\backslash W\;\exists c_1\in F\s((T_1-c_1I)\beta_1\in W)$.
+    Let $V_1=\{\beta\in V\;|\;(T_1-c_1I)\beta\in W\}$. $\beta_1\in V_1,$ so it is nonempty and $W\varsubsetneq V_1\subset V$.
+    Here, by construction, $V_1$ is $\mcF$-inv. since $\forall T_i\in\mcF\s((T_1-c_1I)T\beta=T(T_1-c_1I)\beta\in W)$.
+
+    Now, take $V_1\subset V$ and let $U_2:=T_2|_{V_1}$. Applying \Cref{lem:lemma} to $V_1\backslash W$ and $U_2$, $\exists\beta_2\in V_1\backslash W\;\exists c_2\in F\s((T_2-c_2I)\beta_2\in W)$.
+    So, $\beta_2\not\in W$, $(T_1-c_1I)\beta_2\in W$, $(T_2-c_2I)\beta_2\in W$. Take $V_2=\{\beta\in V_1\;|\;(T_2-c_2I)\beta\in W\}$. Then $(\beta_2\not\in W)\wedge(\beta_2\in V_2)$.
+    By repeating, we can get $W\varsubsetneq\cdots\subset V_1\subset V$. Thus terminates in finite steps since $\dim(V)<\infty$.
+}
+
+\cor{}{
+    $V$: f.d.v.s.$/F$ and $\mcF$ as comuuting family of triangulable endo. Then $\exists\mfB$ s.t. $[T_i]_\mfB$ are all upper triangular mat.
+}
+
+\pf{Proof}{
+    Exercise. Use our argument for a single operator and use \Cref{lem:lemma} for commuting families.
+}
+
+\cor{}{
+    $V$: f.d.v.s.$/F$ and $\mcF$ as comuuting family of diagonalizable endo. Then $\exists\mfB$ s.t. $[T_i]_\mfB$ are all diagonal mat.
+}
+
+\cor{}{
+    Suppoer $F$ is algebraically closed and $\mcF$ as commuting family of endo. Then $\exists$ simultaneously triangulating basis.
+}
+
+\section{Direct-Sum Decompositions}
+
+\dfn{Independent}{
+    $V$: v.s.$/F$. We say subspaces, just say $W_i$, are indep. if there common elements are just $0$.
+}
+
+\dfn{Internal Direct Sum}{
+    If $W=\sum_{i=1}^kW_i$ and each $W_i$ are indep., then we say the sum is direct and we write it as $W=\bigoplus_{i=1}^kW_i$.
+}
+
+\exer{}{
+    If $W=\bigoplus_{i=1}^k$, then $\exists!$ expression of $w\in W$ w.r.t. each $w_i\in W_i$.
+}
+
+\dfn{Projection}{
+    $V$: f.d.v.s.$/F$. Supopose we have endo. $E:V\rightarrow V$ s.t. $E^2=E$. Then we say $E$ is a projection.
+}
+
+\exmp{}{
+    $V:=V_1\oplus V_2$. $P_1:V\mapsto V_1$ and $P_2:V\mapsto V_2$. Then those classical 'projection' is actually a projection we defined above.
+}
+
+\mlemma{}{
+    Let $E$ be a projection. Then for $V:=V_1\oplus V_2$ and $P_1:V\mapsto V_1$, $E$ really is a classical 'projection', i.e., $E=P_1:V\mapsto V_1$.
+}
+
+\pf{Proof}{
+    $V_1:=R(E)$, $V_2:=N(E)$. 
+    \clm[directsum]{}{
+        $V=V_1\oplus V_2$
+    }
+    
+    \pf{Proof}{
+        Let $v\in V$. Then $v=E(v)+v-E(v)$. $E(v)\in R(E)$. Also, $E(v-E(v))=E(v)-E^2(v)=0$, so $(v-E(v))\in N(E)$. Thus $V=R(E)+N(E)$.
+        To show this is direct, suppose we have $v_1+v_2=0$ for $(v_1\in R(E))\wedge(v_2\in N(E))$. Then $v_1=-v_2\in R(E)$ and $\exists\alpha\in V\s(v_1=R(\alpha))$.
+        $E(v_1)=-E(v_2)=0$ and $E(v_1)=E^2(\alpha)=E(\alpha)=v_1$. Since $E(v_1)=0$, $v_1=0$. Thus $v_2=0$, which leads sum is direct. 
+    }
+
+    Now if $v\in V_1\oplus V_2$, write $v=v_1+v_2$, then $E(v)=E(v_1)=v_1$. So $E=P_1$.
+}
+
+\thm{}{
+    $V$: f.d.v.s.$/F$ and $V=\bigoplus_{i=1}^kW_i$. Then $\exists E_i:V\mapsto W_i$ s.t.
+    \begin{enumerate}
+        \item[i)] Each $E_i$ are projection
+        \item[ii)] $\forall i\neq j\s(E_iE_j=0)$
+        \item[iii)] $I=\sum E_i$
+        \item[iv)] The range of $E_i$ is $W_i$   
+    \end{enumerate}
+    Converse also holds. Furthermore, only i), ii), and iii) leads our theorem.
+}
+
+\pf{Proof}{
+    i), ii), and iv) are trivial by definition. For iii), take $\alpha\in V$. $\alpha=\sum E_i\alpha\Rightarrow I=\sum E_i$.
+    Conversely, suppose we have $E_i$ $i\in[k]$ s.t. they satisfy those first three conditions. We can take $W_i$ as $R(E_i)$. 
+    Then, $V=W_1+\cdots+W_k$. We have to show this is direct. By iii), we have $\alpha=\sum E_i\alpha$. 
+    This expression is unique since if $\alpha=\alpha_1+\cdots+\alpha_k$ for $\alpha_i\in W_i$, then using i) and ii), we can derive
+    $E_j\alpha=\sum_{i=1}^kE_j\alpha_i=E_j^2\beta_j=E_j\beta_j=\alpha_j$ if we take $\alpha_i=E_i\beta_i$.
+}
+
+\section{Invariant Direct Sum}
+
+\thm{}{
+    $T:$ endo. on n-d.v.s. $V/F$. $V=\bigoplus_{i=1}^kW_i$. Let $E_i:V\mapsto V$ be projection to $W_i$. Then $W_i$ are $T$-inv. $\iff$ $T$ commutes with $E_i$.
+}
+
+\pf{Proof}{
+    ($\Leftarrow$): Suppose $T$ commutes with all $E_i$. Let $\alpha_i\in W_i=R(E_i)$. N.T.S. $T\alpha_i\in W_i$. 
+    We can write $\alpha_i=E_i\beta$. So $T\alpha_i=TE_i\beta=E_iT\beta$, which leads $T\alpha_i\in R(E_i)=W_i$.
+    Since $\alpha_i$ was arbitrary element is $W_i$, $W_i$ is $T$-inv.
+
+    ($\Rightarrow$): Let $\alpha\in V$. We can say $\alpha=v_1+\cdots+v_k$ for each $v_i\in W_i$ uniquely. $W_i:=R(E_i)$, so each $v_i=E_i(\alpha)$.
+    So $\alpha=E_1(\alpha)\cdots+E_k(\alpha)\Rightarrow T\alpha=TE_1(\alpha)+\cdots TE_k(\alpha)$.
+    Since $E_i(\alpha)\in W_i$ is $T$-inv., $T(E_i\alpha)=E_i(\beta_i)\in W_i\Rightarrow T\alpha=E_1(\beta_1)+\cdots+E_k(\beta_k)$. For $i\neq j$, $E_jTE_i\alpha=E_jE_i\beta_i=0$. 
+    For $i=j$, $E_jTE_j\alpha=E_j\beta_j$. Thus $E_jT\alpha=E_jTE_1\alpha+\cdots+E_jTE_k\alpha=E_j\beta_j=TE_j\alpha$. Thus $E_jT=TE_j$ since $\alpha$ is arbitrary.
+}
+
+\thm{}{
+    $T:$ endo. on n-d.v.s. $V/F$. If $T$ is diagonalizable and if $c_1,\ldots,c_k$ are the distinct char. values of $T$, then $\exists E_i$ on $V$ s.t.
+    \begin{enumerate}
+        \item[i)] $T=c_1E_1+\cdots+c_kE_k$
+        \item[ii)] $I=\sum E_i$
+        \item[iii)] $\forall i\neq j\s(E_iE_j=0)$
+        \item[iv)] $E_i^2=E_i$
+        \item[v)] The range of $E_i$ is the char. space for $T$ associated with $c_i$
+    \end{enumerate}
+    Converse also holds. Furthermore, only i), ii), and iii) leads our theorem.
+}
+
+\pf{Proof}{
+    ($\Rightarrow$): Suppose diagonalizable with char. values $c_i$. $W_i:=E_{c_i}=N(T-c_iI)$. Since $T$ is diagonalizable, $V=\bigoplus_{i=1}^kW_i$. 
+    Thus ii)$\sim$v) are trivial. Now, $\alpha=\sum E_i\alpha\Rightarrow T\alpha=\sum TE_i\alpha=\sum T\alpha_i=\sum c_i\alpha_i=\sum c_iE_i\alpha$. Since $\alpha$ is arbitrary, $T=\sum c_iE_i$.
+    
+    ($\Leftarrow$): Using ii) and iii) to obtain iv). using i) and iv) to obtain $R(E_i)\subset N(T-c_iI)$. Since we assumed $E_i\neq0$, $c_i$ is char. value of $T$.
+    Take $i)-c\times ii)$. Then $(T-cI)=(c_1-c)E_1+\cdots+(c_k-c)E_k$. so if $(T-cI)\alpha=0$, we must have $(c_i-c)E_i\alpha=0$. If $\alpha\neq0$, then $E_i\alpha\neq0$ for some $i$, so in this case, $c_i=c$.
+    Certainly $T$ is diagonalizable, since every nonzero vector in $R(E_i)$ is a char. vec. of $T$, and $I=\sum E_i$ shows these char. vec. span $V$. 
+    Now we have to show $N(T-c_iI)=R(E_i)$. This is clear since if $T\alpha=c_i\alpha$, then $\sum_{j=1}^k(c_j-c_i)E_j\alpha=0$ hence $(c_j-c_i)E_j\alpha=0$ for each $j$,
+    and then $E_j\alpha=0$ for $j\neq i$. Since $\alpha=\sum E_i\alpha$ and $E_j\alpha=0$ for $j\neq i$, $\alpha=E_i\alpha$, which shows $\alpha\in R(E_i)$.
+}
+
+\section{The Primary Decomposition Theorem}
+
+\thm[pdt]{Primary Decomposition Theorem}{
+    $T:$ endo. on f.d.v.s. $V/F$. $\exists$ a decomposition of $V$ into $V=\bigoplus_{i=1}^kW_i$ s.t.
+    $W_i=N(p_i(T)^{r_i})$ where $m(x)=\prod_{i=1}^kp_i(x)^{r_i}$ for $r_i\geq1$ and irreducible, distinct $p_i$.
+    Also, each $W_i$ are $T$-inv., and $T_i:=T|_{W_i}$ has min. poly. $p_i(T)^{r_i}$.
+}
+
+\pf{Proof}{
+    When $k=1$, it is trivial. Suppose $k>1$. Define $f_i(x):=\frac{m(x)}{p_i(x)^{r_i}}=\prod_{j\neq i}p_j(x)^{r_j}$. 
+    Then $\gcd(f,p_i^{r_i})=1$. Since each $f_i$ are also relatively prime, $\exists g_1,\ldots,g_k\s(f_1g_1+\cdots+f_kg_k=1)$. Define $h_i(x):=f_i(x)g_i(x)$.
+    For $i\neq j$, $m\;|\;f_if_j$ thus $f_i(T)f_j(T)=0$. Note that $\sum h_i(T)=I$. Define $E_i:=h_i(T)$. Then $\sum E_i=I$ and $\forall i\neq j\s(E_iE_j=0)$ since $E_iE_j=f_i(T)g_i(T)f_j(T)g_j(T)=0$.
+    Thus we can see $E_i$ are projection. Thus $V=\bigoplus_{i=1}^kR(E_i)$ and each are $T$-inv.
+    \clm[equiv]{}{
+        $R(E_i)=W_i=N(p_i(T)^{r_i})$
+    }
+
+    \pf{Proof}{
+        Let $\alpha\in R(E_i)$. Then $\alpha=E_i\alpha\Rightarrow p_i(T)^{r_i}\alpha=p_i(T)^{r_i}f_i(T)g_i(T)\alpha=0$ since $p_i(T)^{r_i}f_i(T)g_i(T)=m(T)g_i(T)=0$.
+        Thus $R(E_i)\subset N(p_i(T)^{r_i})$. Conversely, let $\alpha\in N(p_i(T)^{r_i})$. Note that if $i\neq j$, $p_i^{r_i}\;|\;f_j$ thus $p_i^{r_i}\;|\;f_jg_j=h_j$, thus $f_j(T)g_j(T)\alpha=h_j(T)\alpha=0$. 
+        In other words, $\forall i\neq j$, $\alpha$ is in $V$ whose projection about $E_j$ is $0$. Thus $\alpha$ has only $R(E_i)$ component.
+        Thus $N(p_i(T)^{r_i})\subset R(E_i)$, consequently $R(E_i)=N(p_i(T)^{r_i})$.
+    }
+
+    Now we have to show $T_i$ has min. poly. as $p_i(x)^{r_i}$. Note that $W_i=N(p_i(T)^{r_i})$ implies $p_i(T)^{r_i}|_{W_i}=0$. Thus $m_i(x)\;|\;p_i(x)^{r_i}$. 
+    So $m_i(x)=p_i^{s_i}$ for $1\leq s_i\leq r_i$. E.T.S. $s_i=r_i$. Let $g(x)$ be poly. s.t. $g(T_i)=0$.
+    \clm[equal]{}{
+        $p_i(x)^{r_i}\;|\;g(x)$
+    }
+
+    \pf{Proof}{
+        $g(T_i)=0\iff g(T)f_i(T)=0$. So min. poly. of $T$ divides $g(x)f_i(x)$. Since $\gcd(p_i^{r_i},f_i)=1$, $m(x)\;|\;g(x)f_i(x)$ leads $p_i^{r_i}\;|\;g(x)$. 
+        In particular, $m_i(x)$ is divisible by $p_i^{r_i}$, thus $r_i=s_i$.
+    }
+}
+
+\cor{}{
+    $E_1,\ldots,E_k$ be projection associated to primary decomposition of $V$ w.r.t. $T$. Then each $E_i$ is a poly. in $T$. 
+    In particular, if $U:V\mapsto V$ is another endo. commuting with $T$, then, $U$ commutes with each $E_i$ so $W_i$ are $U$-inv.
+}
+
+\thm{}{
+    $T:$ endo. on f.d.v.s. $V/F$. If $T$ is triangulable, $\exists$ diagonalizable $D$ and nilpotent $N$ s.t. $T=D+N$ and $DN=ND$. Such $D$ and $N$ are uniquely determined by $T$.
+}
+
+\pf{Proof}{
+    $m(x)=\prod(x-c_i)^{r_i}$ for distinct $c_i$. Take $R(E_i)=W_i:=N((T-c_iI)^{r_i})$ as like \Cref{th:pdt}. Take $D:=\sum c_iE_i$ and $N=T-D$.
+    \clm[nilpotent]{}{
+        $N$ is nilpotent
+    }
+
+    \pf{Proof}{
+        $I=\sum E_i\Rightarrow T=\sum TE_i\Rightarrow N=T-D=\sum(T-c_iI)E_i$. Since each $E_i$ are poly. in $T$ and $E_iE_j=0$,
+        $N^r=\sum(T-c_iI)^rE_i$. By choosing $r=\max(r_1,\ldots,r_k)$, $N^r=0$.
+    }
+
+    $D$ and $N$ are commute since they are poly. in $T$. Thus existence is proven.
+
+    For uniqueness, suppose we have $T=D'+N'=D+N$. Then $D-D'=N'-N$. We know $D-D'$ is diagonalizable.
+    Now suppose $N^r=N'^{r'}=0$. Then $(N'-N)^A=\sum_{i=0}^A{A\choose i}N'^iN^{A-i}$. Taking $A>r+r'$ leads $(N'-N)^A=0$.
+    Take $\alpha:=N'-N=D'-D$. Then $\alpha$ is diagonalizable and nilpotent, which leads $\alpha=0$. Thus $D=D'$ and $N=N'$. 
+}
+
+\end{document}

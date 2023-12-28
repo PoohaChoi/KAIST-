@@ -1,0 +1,182 @@
+\documentclass[C:/LATEX/MAS212/Summary/MAS212.tex]{subfiles}
+
+\begin{document}
+
+\section{Vector Spaces}
+
+\dfn{Vector Spaces}{
+	A vector space consists of the following:
+	\begin{enumerate}
+		\item field $F$ of scalars
+		\item a set $V$ of objects called vectors
+		\item $\forall\{\alpha,\beta,\gamma\}\subset V$, a rule called vector addition holds: \begin{itemize}
+			\item addition is commutative: $\alpha+\beta=\beta+\alpha$
+			\item addition is associative: $\alpha+(\beta+\gamma)=(\alpha+\beta)+\gamma$
+			\item $\ues0\in V\s(\alpha+0=\alpha)$
+			\item $\ues(-\alpha)\in V\s(\alpha+(-\alpha)=0)$
+		\end{itemize}
+		\item $\forall\{\alpha,\beta\}\subset V\s\forall\{c_1,c_2\}\subset F$, a rule called scalar multiplication holds: \begin{itemize}
+			\item $1\alpha=\alpha$
+			\item $(c_1c_2)\alpha=c_1(c_2\alpha)$
+			\item $c_1(\alpha+\beta)=c_1\alpha+c_1\beta$
+			\item $(c_1+c_2)\alpha=c_1\alpha+c_2\alpha$
+		\end{itemize}
+	\end{enumerate}
+}
+
+\dfn{Linear Combinations}{
+	$\alpha\in V$ is said to be linear combination of the vectors $\alpha_1,\ldots,\alpha_n\in V$ if $\exists c_1,\ldots,c_n\in F$ s.t.
+	\begin{equation*}
+		\alpha=c_1\alpha_1+\cdots+c_n\alpha_n=\sum_{i=1}^nc_i\alpha_i
+	\end{equation*}
+}
+
+\section{Subspaces}
+
+\dfn{Subspaces}{
+	$W\subset V$ is called subspace if $W$ satisfies vector space axioms.
+}
+
+\thm[]{}{
+	(($V$:f.d.v.s/$F$)$\wedge(\{0\}\subsetneq W\subset V))\Rightarrow$($W$ is subspace$\iff \forall\{\alpha,\beta\}\in V\s\forall c\in F\s(c\alpha+\beta\in V$)).
+}
+
+\pf{Proof}{
+	We have to check: $W\neq\emptyset\Rightarrow\exists w\in W\Rightarrow0\in W$.
+}
+
+\thm[]{}{
+	$\{W_i\}:=$ collection of subspaces of $F$-v.s. $V$. Let $W:=\cap W_i$. then $W$ is also subspace.
+}
+
+\pf{Proof}{
+	All $W_i$ has 0, thus $0\in\cap W_i$, which implies $W\neq\emptyset$. Let $v_1,v_2\in W$, $c\in F$. Then $\forall v_1,v_2\s(v_1,v_2\in W_i)$. Since $W_i$ is subspace, $cv_1+v_2\in W_i$ for all $i$, thus also in $W$.
+}
+
+\dfn{Span}{
+	$V:$ $F$-v.s. $S\subset V:=$ any nonempty subset. The $\text{span}(S)$ is the intersetion of all subspaces of $V$ that contains $S$.
+}
+
+\thm{}{
+	$\text{span}(S)$ is set of All linear combination of $S/F$.
+}
+
+\pf{Proof}{
+	$W:=\text{span}(S)$ and let $L$ be set of all lin. comb. of $S/F$. Then obviously, $L\subset W$ because $S\subset WW$ and $W$ is subspace.
+
+	Conversely, note that $S\subset L$. If we prove $L$ is subspace, then since $S\subset L$, $W=\text{span}(S)\subset L$. Then $L$ is apparently a subsapce. Thus $W=L$.
+}
+
+\section{Bases and Dimensions}
+
+\dfn{Linearly Independent}{
+	$V:$ $F$-v.s., and take $S$ as subset of $V$. We say $S$ is linearly independent if $\exists\alpha_1,\ldots,\alpha_n\in S$ and $c_1,\ldots,c_n\in F$, not all zero, s.t. $c_1\alpha_1+\cdots+c_n\alpha_n=0$ has nontrivial solution. If $S$ is not linaerly dependent, we say it is linearly independent.
+}
+
+\thm{}{
+	$V:$ $F$-v.s. $\alpha_1,\ldots,\alpha_n$ are linearly independent $\iff$ $\forall i\in[n]\,\forall c_i\in F\s((c_1\alpha_1+\cdots+c_n\alpha_n=0)\Rightarrow c_1=c_2=\cdots=c_n=0$.
+}
+
+\pf{Proof}{
+	Exercise!
+}
+
+\dfn{Basis}{
+	$V:$ $F$-v.s. A basis of $V$ is a subset $S\subset V$ s.t. $S$ is lin. indep. and $\text{span}(S)=V$. 
+}
+
+\dfn{Finite Dimensional}{
+	If basis $S$ has property $|S|<\infty$, we say $V$ is finite dimensional vector space.
+}
+
+\thm[prev]{}{
+	$V:$ $F$-v.s. that is spanned by $\{\beta_1,\ldots,\beta_n\}\subset V$. Then any lin. indep. set of vec. in $V$ is finite and card. is no bigger than $n$.
+}
+
+\pf{Proof}{
+	E.T.S. that every subset $S$ with more than $n$ vec. are lin. dep. Suppose $S=\{\alpha_1,\ldots,\alpha_m\}$, for distinct vec. with $m\geq n$. Since $\{\beta_1,\ldots,\beta_n\}$ spans $V$, for each $1\leq j\leq m$, $\alpha_j=\sum_{i=1}^nA_{ij}\beta_i$.
+	Let $x_1,\ldots,x_m\in F$ be arbitrary chosen. Then $x_1\alpha_1+\cdots+x_m\alpha_m=\sum_{j=1}^mx_j\alpha_j=\sum_{i=1}^n\left(\sum_{j=1}^mA_{ij}x_j\right)\beta_i$. Consider the system $[A_{ij}][\textbf{x}^T]=0$. This has at least 1 free variable, which leads system has nontrivial solution.
+}
+
+\cor{}{
+	$V$: $F$-v.s. that has finite spanning set. Then any two basis of $V$ have same card.
+}
+
+\pf{}{
+	Apply \Cref{th:prev} to both side of two different basis.
+}
+
+\mlemma{}{
+	$W\subsetneq V$ be finite dim. v.s. Then $\dim(W)<\dim(V)$. 
+}
+
+\pf{Proof}{
+	Let $S_0$ be a basis of $W$. $S_0$ is lin. indep., so can enlarged it to get a basis of $V$. Since $W$ is propersubset of $V$, $\exists v\in V\backslash W$. Take $S_1=S_0\cup\{v\}$, and repeat this.
+	finite dimensional condition of $V$ implies this algorithm terminates in finite times, and thus we can conclude $\dim(W)<\dim(V)$.
+}
+
+\thm{}{
+	$W_1,W_2\subset V:$ finite v.s. Then $W_1+W_2$ is a finitie dim. v.s. and $\dim(W_1)+\dim(W_2)=\dim(W_1+W_2)-\dim(W_1\cap W_2)$.
+}
+
+\pf{Proof}{
+	Choose $\{\alpha_1,\ldots,\alpha_d\}$ a basis for $W_1\cap W_2$. We can extend this into $W_1$ and $W_2$'s basis. Take $\{\alpha_1,\ldots,\alpha_d,\beta_{d+1},\ldots,\beta_a\}$ be basis for $W_1$ and $\{\alpha_1,\ldots,\alpha_d,\gamma_{d+1},\ldots,\gamma_b\}$ be basis for $W_2$.
+
+	\clm{}{
+		$\alpha_1,\ldots,\alpha_d,\beta_{d+1},\ldots,\beta_a,\gamma_{d+1},\ldots,\gamma_b$ is a basis for $W_1+W_2$.
+	}
+
+	\pf{Proof}{
+		Suppose for arbitrary lin. indep. set $B$, $\text{span}(B)=W_1+W_2$. Let $x\in W_1+W_2$. Then $x=w_1+w_2$ where $w_1\in\text{span}\{\alpha,\beta\}$ and $w_2\in\text{span}\{\alpha,\gamma\}$, thus $x\in\text{span}\{\alpha,\beta,\gamma\}$. On the other hand, each vec. in $B$ is already in $W_1+W_2$. Thus $\text{span}(B)=W_1+W_2$.
+	}
+
+	\clm{}{
+		This $B$ is lin. indep.
+	}
+
+	\pf{Proof}{
+		Suppose we have $\sum a_i\alpha_i+\sum b_j\beta_j+\sum c_k\gamma_k=0$ for alal scalars are 0. Then $\sum a_i\alpha_i+\sum b_j\beta_j=-\sum c_k\gamma_k$. Thus $\sum c_k\gamma_k\in W_1\cap W_2$ where $\{\alpha_1,\ldots,\alpha_d\}$ is basis for $W_1\cap W_2$ and $\gamma$ are indep. with $\alpha$. Thus $\forall k\in\bbN\s(c_k=0)$. 
+		Simarly, we can see that all scalars are 0. Thus $B$ is indep.
+	}
+
+	This two claim leads $\dim(W_1+W_2)=\dim(W_1)+\dim(W_2)-\dim(W_1\cap W_2)$.
+}
+
+\section{Coordinates}
+
+\dfn{Coordinates (Ordered Basis)}{
+	An ordered basis for $F$-v.s. $V$ is a sequence of vec. that forms a basis. 
+}
+
+\mlemma{}{
+	$V:$ f.d.v.s.$/F$. Suppose $B=\{v_1,\ldots,v_n\}$ is an ordered basis of $V$. Then for each $x\in V$, $\exists!$ expression of the form $x=x_1v_1+\cdots+x_nv_n$ for some $x_i\in F$.
+}
+
+\pf{Proof}{
+	Existence of expression of form is trivial since $B$ is basis of $V$.
+
+	For uniqueness, suppose we have two expression. Then indepence condition of each $v_i$ leads these expression have exactly same coefficients.	
+}
+
+\dfn{Coordinate Matrix}{
+	$V:$ f.d.v.s.$/F$, $B$ be ordered basis. We define $[x]_B=[x_1\,x_2\,\cdots\,x_n]^T$ the coordinate matrix of $x$ w.r.t. the basis $B$.
+}
+
+\thm{}{
+	$V:$ f.d.v.s.$/F$, $B$ and $B'$ be two different ordered basis of $V$. Then $\exists!$ invertible mat. $P$ s.t. $\forall x\in B$, $[x]_B=P[x]_{B'}$, also $[x]_{B'}=P^{-1}[x]_B$. 
+}
+
+\pf{Proof}{
+	Let $B:=\{\alpha_1,\ldots,\alpha_n\}$ and $B':=\{\beta_1,\ldots,\beta_n\}$. For $\beta_j\in B'$, since $B$ is a basis, $\beta_j=\sum_{i=1}^nP_{ij}\alpha_i$ and this $P_{ij}$ are uniquely decided. Let $P:=[P_{ij}]$. 
+	Let $x\in V$. Write $[x]_B=[x_1\,\ldots\,x_n]^T$, $[x]_{B'}=[x'_1\,\ldots\,x'_n]^T$. Then $x=\sum_i\left(\sum_jx'_jP_{ij}\right)\alpha$. By uniqueness, we can derive $[x]_B=P[x']_B$. Since $B$ and $B'$ are lin. indep., x=0 implies $[x]_B=[x]_{B'}=0$. Thus $P$ is invertible.
+}
+
+\section{Summary of Row-Equivalence}
+
+\textit{\textbf{This Chapter is Intentionally Skipped at Lectures}}
+
+\section{Computations Concerning Subspace}
+
+\textit{\textbf{This Chapter is Intentionally Skipped at Lectures}}
+
+\end{document}

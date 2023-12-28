@@ -1,0 +1,455 @@
+\documentclass[C:/LATEX/MAS212/Summary/MAS212.tex]{subfiles}
+
+\begin{document}
+
+\section{Linear Transformations}
+
+\dfn{Linear Transformation}{
+    $T:V_1\rightarrow V_2$ for v.s. $V_1,V_2$ is funciton called linear transformation if this function satisfies $T(cx_1+x_2)=cT(x_1)+T(x_2)$ for $x_i\in V_i$, $c\in F$.
+}
+
+\exer{}{
+    If $T$ is a linear trans., then $T(0)=0$.
+}
+
+\pf{Proof}{
+    $T(0)+T(0+0)=2T(0)$. 
+}
+
+\exer{
+    If $T$ is a linear trans., then $T(-x)=-T(x)$.
+}
+
+\thm{}{
+    $V,W:$ f.d.v.s.$/F$, $\{\alpha_1,\ldots,\alpha_n\}$ be basis of $V$ and $\{\beta_1,\ldots,\beta_m\}$ be any given subset of $W$. Then $\exists!T:V\rightarrow W$ s,t, $T(\alpha_i)=\beta_i$.
+}
+
+\pf{Proof}{
+    Define $T_0(x_1\alpha_1+\cdots+x_n\alpha_n):=\sum_{i=1}^nx_i\beta_i$. This is lin. trans. Thus existence is proven.
+
+    For uniqueness, if there if another $U$ s.t. $U(\alpha_i)=\beta_i$, then $U(\sum x_i\alpha_i)=\sum x_iU(\alpha_i)=\sum x_i\beta_i=T_0(\sum x_i\alpha_i)$. Thus $U=T_0$.
+}
+
+\dfn{Null Space and Range}{
+    $T:V\rightarrow W:$ lin. trans. of v.s.$/F$. $N(T)\subset V$, $R(T)\subset W$ where $N(T):=\{v\in V\;|\;Tv=\}$ and $R(T):=\{w\in W\;|\;\exists v\in V\s(w=T(v))\}$.
+}
+
+\dfn{}{
+    $\text{nullity}(T):=\dim_F(N(T))$, $\text{rank}(T):=\dim_F(R(T))$.
+}
+
+\thm{}{
+    $V:$ f.d.v.s.$/F$, $T:V\rightarrow W:$ lin. trans. Then $\text{rank}(T)+\text{nullity}(T)=\dim(V)$.
+}
+
+\pf{Proof}{
+    Begin with $N(T)$. Choose basis $\{v_1,\ldots,v_k\}$ of $N(T)$ and choose $v_{k+1},\ldots,v_n\in V$ s.t. $\{v_1,\ldots,v_n\}$ is a basis of $V$.
+
+    \clm{}{
+        $T(v_{k+1}),\ldots,T(v_n)$ is a basis of $R(T)$.
+    }
+    
+    \pf{Proof}{
+        For linear independence, suppose $c_{k+1}T(v_{k+1})+\cdots+c_nT(v_n)=0$. Then $T(c_{k+1}v_{k+1}+\cdots+c_nv_n)=0$, so $c_{k+1}v_{k+1}+\cdots+c_nv_n\in N(T)$. Since $\{v_1,\ldots,v_k\}$ is a basis of $N(T)$, $c_{k+1}v_{k+1}+\cdots+c_nv_n=a_1v_1+\cdots+a_kv_k$. 
+        Since $\{v_1,\ldots,v_n\}$ is basis, those are lin. indep. Thus all coefficients are 0, thus $T(v_{k+1}),\ldots,T(v_n)$ are indep. 
+    }
+
+    \clm{}{
+        $\text{span}\{T(v_{k+1}),\ldots,T(v_n)\}=R(T)$
+    }
+
+    \pf{Proof}{
+        Exercise!
+    }
+
+    Thus $\dim(R(T))=n-k$. 
+}
+
+\thm{}{
+    For $m\times n$ mat. A, row rank is equal to column rank.
+}
+
+\pf{Proof}{
+    $V:=F^n$ and $W:=F^m$. $T:V\rightarrow W$ is lin. trans. Then col. rank = dim. of spans of col. = $\dim(R(T))$ = $\text{rank}(T)$. Also, 
+    $\text{nullity}(T)=\dim(N(T))=n-\text{rank}(T)=$ number of rows with leading 1's in RREF = number of cols. with leading 1's in RREF = dim. of col. space of $A$. Thus row rank is equal to col. rank.
+}
+
+\section{The Algebra of Linear Transformations}
+
+\dfn{$L(V,W)$}{
+    $L(V,W)$ is set of all lin. trans. from $V$ to $W$. 
+}
+
+\thm{}{
+    $V,W:$ $F$-v.s. Then $L(V,W)$ is itself vec. space over $F$.
+}
+
+\pf{Proof}{
+    Let $T,U\in L(V,W)$. Define $T+U:V\rightarrow W$ by $(T+U)(v)=T(v)+U(v)$.
+
+    \clm{}{
+        $cT+U\in L(V,W)$
+    }
+
+    \pf{Proof}{
+        $(cT+U)(av_1+v_2)=cT(av_1+v_2)+U(av_1+v_2)$ where both $T$ and $U$ is lin. trans. Thus trivially it is lin. trans.
+    }
+}
+
+\thm{}{
+    $V:$ $n$-dim. v.s.$/F$, $W:$ $m$-dim. v.s.$/F$. Then $\dim_F(L(V,W))=nm$. 
+}
+
+\pf{Proof}{
+    Suppose $B=\{\alpha_1,\ldots,\alpha_n\}$ is basis of $V$, $B'=\{\beta_1,\ldots,\beta_m\}$ is basis of $W$. For each $(p,q)$ where $1\leq p\leq m$ and $1\leq q\leq r$, define $E^{p,q}(\alpha_i)=0$ if $i\neq q$ and $\beta_p$ if $i=q$. Then these are lin. indep. trans. $V\rightarrow W$ and they span $L(V,W)$.
+}
+
+\mlemma{}{
+    $U\circ T$ is a lin. trans. in $L(V,Z)$ where $U:V\rightarrow W$ and $T:W\rightarrow Z$.
+}
+
+\pf{Proof}{
+    Exercise!
+}
+
+\dfn{Endomorphism (Linear Operator)}{
+    For the case $T:V\rightarrow V$, we say $T$ is an endomorphism or linear operator.
+}
+
+\dfn{}{
+    $T:V\rightarrow W$ be lin. trans. Then
+    \begin{itemize}
+        \item one-to-one or injective if $T(v)=0\Rightarrow v=0$. (nonsingular)
+        \item onto or surjective if $T(V)=W$
+        \item $T$ is invertible if $\exists U:W\rightarrow V$ s.t. $U\circ T=T\circ U=Id$
+    \end{itemize}
+}
+
+\exer{}{
+    $T$ is injective and surjective $\iff$ $T$ is invertible.
+}
+
+\exer{}{
+    $T:V\rightarrow W$ is a nonsingular lin. trans. Then any lin. indep. subset $S$ of $V$ is sent to lin. indep. set $T(S)$.
+}
+
+\exer{}{
+    Suppose $T:V\rightarrow W$ is invertible. Then $\dim(V)=\dim(W)$ for f.d.v.s. $V$ and $W$.
+}
+
+\thm{}{
+    Suppose $V,W$ as f.d.v.s.$/F$ and $\dim(V)=\dim(W)$. Let $T:V\rightarrow W$ be a lin. trans. TFAE:
+    \begin{enumerate}
+        \item[i)] $T$ is invertible
+        \item[ii)] $T$ is nonsingular, i.e., $T$ is injective
+        \item[iii)] $T$ is onto, i.e., $T$ is surjective
+    \end{enumerate}
+}
+
+\pf{Proof}{
+    $\text{rank}(T)+\text{nullity}(T)=n$. $T$ is nonsingular $\iff$ $\text{nullity}(T)=0$ $\iff$ $\text{rank}(T)=n$ $\iff$ $R(T)=W$ $\iff$ $T$ is onto.
+}
+
+\dfn{General linear Group}{
+    $G=$ invertible endo. on $V$. with inverse $\circ$. Then $G=GL(V)$ is the general linear group of $V$. 
+}
+
+\dfn{Group}{
+    If some algebraic structure is associative with identity, we say this algebraic structure is group.
+}
+
+\section{Isomorphism}
+
+\dfn{Isomorphism}{
+    $V,W:$ $F-$v.s. We say a lin. trans. $T:V\rightarrow W$ is an isomorphism if $T$ is an invertible lin. trans.
+}
+
+\thm{}{
+    $V:$ $n$-d.v.s.$/F$. Then $V$ is isomorphic to $F^n$ ($V\simeq F^n$).
+}
+
+\pf{Proof}{
+    $B:=\{\alpha_1,\ldots,\alpha_n\}$ is basis of $V$. Define $T:V\rightarrow F^n$, i.e., $v\mapsto[v]_B$.
+
+    \clm{}{
+        This is isomorphism $\iff$ $T$ is injective.
+    }
+
+    \pf{Proof}{
+        Suppose $T(v)=0$. Then $v=0$. 
+    }
+}
+
+\section{Representation of Transformation by Matrices}
+
+\thm{}{
+    $V,W:$ $F$-v.s. and $B,B'$ be basis, where $T:V\rightarrow W$ be lin. trans. Then $\exists!m\times n$ mat. $A$. s.t. $[Tv]_{B'}=A[v]_B$.
+}
+
+\thm{}{
+    $V,W,Z:$ f.d.v.s.$/F$, $B,B',B''$ be basis. Let $U\circ T:V\rightarrow Z$ be lin. trans. If $A_1=[T]_{B,B'}$ and $A_2=[T]_{B',B''}$, then $[U\circ T]_{B,B''}=A_2\circ A_1$.
+}
+
+\thm{}{
+    $T:$ endo. on f.d.v.s.$V/F$, where $B_1,B_2$ be two different basis of $V$. Let $P$ be mat. s.t. $[v]_{B_1}=P[v]_{B_2}$. Then $[T]_{B_2}=P^{-1}[T]_{B_1}P$.
+}
+
+\dfn{Similar}{
+    We say $M$ and $N$ are similar if $\exists$ invertible $P$ s.t. $N=P^{-1}MP$. 
+}
+
+\section{Linear Functionals}
+
+\dfn{Linear Functional}{
+    $V:$ $F$-v.s. A lin. trans. $T:V\rightarrow F$ is called a linear functional.
+}
+
+\exmp{}{
+    Definite integral and functions, especially constant function are linear functional.
+}
+
+\dfn{Dual Vector Space}{
+    $V:$ $F$-v.s. We normally write $V^*=L(V,F)$ the dual vector space of $V$.
+}
+
+\nt{
+    For finite dimensional $V$, $\dim(V^*)=\dim(V)$. But if $V$ is infinite dimensional, $\dim(V^*)$ can be extremely large.
+}
+
+\mlemma{}{
+    $V:$ $n$-d.v.s.$/F$. Let $\{\alpha_1,\ldots,\alpha_n\}$ be a basis of $V$. Define $f\in V^*$ by declaring $f_i(\alpha_j)=\delta_{ij}$. Then $\{f_1,\ldots,f_n\}$ is basis of $V^*$.
+}
+
+\pf{Proof}{
+    Because $\dim(V^*)=\dim(V)=n$, E.T.S. that $f_1,\ldots,f_n$ are lin. indep. Suppose $\exists c_1f_1+\cdots+c_nf_n=0$ for some $c_i\in F$ in $V^*$. Since $f_i(\alpha_j)=\delta_{ij}$, we can derive $c_jf_j(\alpha_j)=0$. Thus $c_1=\ldots=c_n=0$, which implies $\{f_1,\ldots,f_n\}$ is basis.
+}
+
+\dfn{The Dual Basis}{
+    $\{f_1,\ldots,f_n\}\subset V^*$ is called the dual basis of the basis $\{\alpha_1,\ldots,\alpha_n\}$ of $V$.
+}
+
+\mlemma{}{
+    $V:$ $n$-d.v.s.$/F$. $\{\alpha_1,\ldots,\alpha_n\}$ is basis of $V$. Let $\{f_1,\ldots,f_n\}$ is the dual basis. Then
+    \begin{enumerate}
+        \item[i)] For each $f\in V^*$ $f=\sum_{i=1}^n f(\alpha_i)f_i$
+        \item[ii)] For each $v\in V$ $v=\sum_{i=1}^nf_i(v)\alpha_i$
+    \end{enumerate}
+}
+
+\pf{Proof}{
+    i): Since $f\in\text{span}\{f_1,\ldots,f_n\}$, $\exists$ expression $f=\sum_{i=1}^nx_if_i$ for some $x_i\in F$. Evaluate at $\alpha_j:$ $f(\alpha_j)=x_j$.
+    
+    ii): Since $v\in\text{span}\{\alpha_1,\ldots,\alpha_n\}$, $\exists$ expression $v=\sum_{i=1}^ny_i\alpha_i$. Apply the dual basis.
+}
+
+\nt{
+    $V:$ $n$-d.v.s.$/F$. Let $f\in V^*$. Suppose $f\neq0$ and $f:V\rightarrow F$ be surjective. $N_f:=N(f)$. We know $\dim(N(f))+\dim(R(f))=\dim(V)$. Since $\dim(R(f))=1$, $\dim(N(f))=n-1$.
+}
+
+\dfn{Hyperspace}{
+    $V:$ f.d.v.s.$/F$. subspace $W$ which has property $\dim(W)=\dim(V)-1$ is called hyperspace.
+}
+
+\dfn{Annihilator}{
+    $V:$ $F$-v.s. $S$ be a nonempty subspace. The annihilator of $S$, $S^\circ=Ann(S)$ is defined to be $S^\circ:=\{f\in V^*\;|\;\forall\alpha\in S\s(f(\alpha)=0)\}$. 
+}
+
+\exer{}{
+    $Ann(S)$ is subspace of $V^*$.
+}
+
+\exmp{}{
+    If $S=\{0\}$, then $Ann(S)=V^*$.
+}
+
+\exmp{}{
+    If $S=V$, then $Ann(S)=\{0\}$. 
+}
+
+\thm{}{
+    $V:$ $n$-d.v.s.$/F$, and $W$ be subspace. Then $\dim(W)+\dim(W^\circ)=\dim(V)=n$.
+}
+
+\pf{Proof}{
+    $k:=\dim(W)$ with $\{\alpha_1,\ldots,\alpha_n\}\subset W$. Choose $\alpha_{k+1},\ldots,\alpha_n\in V$ s.t. $\{\alpha_1,\ldots,\alpha_n\}$ is basis of $V$. Let $\{f_1,\ldots,f_k,f_{k+1},\ldots,f_n\}$ be the dual basis. 
+
+    \clm{}{
+        $\{f_{k+1},\ldots,f_n\}$ is a basis of $W^\circ$ 
+    }
+
+    \pf{Proof}{
+        Let's see if $f_{k+1},\ldots,f_n\in W^\circ$. Indeed, by the constructure of the dual basis, all $f_i$ for $i\geq k+1$ vanishes on $\alpha_i$ for $1\leq i\leq k$. Thus $f_{k+1},\ldots,f_n\in W^\circ$.
+
+        Lin. indep. is obvious since this is part of basis of $V^*$.
+    }
+
+    \clm{}{
+        $\text{span}\{f_{k+1},\ldots,f_n\}=W^\circ$
+    }
+
+    \pf{Proof}{
+        $f\in W^\circ\subset V$. So $f=\sum_{i=1}^nf(\alpha_i)f_i$. Since $f\in W^\circ$, $f(\alpha_i)=0$ for all $\alpha_i\in W$, $1\leq i\leq k$. Thus $f=\sum_{i=1}^nf(\alpha_i)f_i$. 
+    }
+}
+
+\cor{}{
+    $V:$ $n$-d.v.s.$/F$. $W$ be $k$-dim. subspace. Then $W$ is intersection of $n-k$ hyperspaces in $V$ of the form $N_f$ for some $0\neq f_i\in V^*$.
+}
+
+\pf{Proof}{
+    Basis of $W$ can be extended to basis of $V$. Take $\{f_1,\ldots,f_n\}\subset V^*$ be the dual basis of $\{\alpha_1,\ldots,\alpha_n\}$. Then $W=\cap_{i=k+1}^nN_{f_i}$. 
+}
+
+\cor{}{
+    $V:$ $n$-d.v.s.$/F$. $W$ be hyperspace. Then $W=N_f$ for some $0\neq f\in V^*$. 
+}
+
+\exer{}{
+    $W_1,W_2$ be subspaces. $V:$ $n$-d.v.s.$/F$. Then $W_1=W_2\iff W_1^\circ=W_2^\circ$.
+}
+
+\section{The Double Dual}
+
+\dfn{Double Dual}{
+    $V:$ $F$-v.s. $V^{**}=L(V^*.F)=L(L(V,F),F)$.
+}
+
+\nt{
+    Dual is not natural in general, but double dual is natural. Define $L_\alpha\in V^{**}$ as: $L_\alpha:V^*\rightarrow F:f\mapsto f(\alpha)$.
+}
+
+\nt{
+    Define $\mfL:V\rightarrow V^{**}:\alpha\mapsto L_\alpha$.
+}
+
+\clm{}{
+    $\mfL$ is a lin. trans.
+}
+
+\pf{Proof}{
+    Suppose $\alpha_1,\alpha_2\in V$, $c\in F$. $\mfL(c\alpha_1+\alpha_2)=L_{c\alpha_1+\alpha_2}(f)=f(c\alpha_1+\alpha_2)=cf(\alpha_1)+f(\alpha_2)$.
+}
+
+\clm{}{
+    $\mfL$ is injective.
+}
+
+\pf{Proof}{
+    Suppose for some $\alpha\in V$, we have $\mfL(\alpha)L_\alpha\in V^*$ is 0 $\iff$ $\forall f\in V^*\s(L_\alpha(f)=0)\iff\forall f\in V^*\s(f(\alpha)=0)\iff\alpha=0$. Thus $\mfL$ is injective.
+}
+
+\nt{
+    Thus $\mfL$ is not surjective in general for infinite dimensional $V$.
+}
+
+\thm{}{
+    $V:$ f.d.v.s.$/F$. Then $\mfL$ is an iso. of vec. spaces.
+}
+
+\pf{Proof}{
+    $V:$ $n$-d.v.s.$/F$. Then $\dim(V^*)=\dim(V^**)=n$. Thus $\mfL$ is injective. lin. trans. from $n$-dim. to $n$-dim. is automatically surjective.
+}
+
+\dfn{Proper Subspace}{
+    $V:$ v.s.$/F$. Then $W\subset V$ is proper if it is not equal to $V$.
+}
+
+\dfn{Maximal}{
+    $V:$ v.s.$/F$. A proper subspace $W\subsetneq V$ is said to be maximal if there is no intermediate subspace between $W$ and $V$, i.e., if there is subspace $W\subset Z\subset V$, then either $W=Z$ or $V=Z$.
+}
+
+\nt{
+    If $\dim(V)=n$, then proper maximal subspace has dim. $n-1$.
+}
+
+\dfn{Generalization of Hyperspace}{
+    $V:$ v.s.$/F$. A hyperspace of $V$ is a proper maximal subspace of $V$.
+}
+
+\thm{}{
+    $V:$ $F$-v.s. Suppose $f\in V^*\backslash\{0\}$. Then, $N_f=\{x\in v\;|\;f(x)=0\}$ is hyperspace in $V$. 
+}
+
+\pf{Proof}{
+    N.T.S. $N_f$ is proper maximal subspace of $V$. It is proper since $N_f=V$ implies $f\equiv 0$, which is contradiction. E.T.S. that $\forall\alpha\in V\backslash N_f$, $\text{span}\{N_f,\alpha\}=V$. For this, E.T.S. that $\forall\beta\in V\s(\beta\in\text{span}\{N_f,\alpha\})$. Let $c:=\frac{f(\beta)}{f(\alpha)}$. Note that $\alpha\not\in N_f$ is $f(\alpha)\neq0$. Let $\gamma:=\beta-c\alpha$. Then $f(\gamma)=f(\beta)-cf(\alpha)=0$. Thus $\gamma\in N_f$. 
+    Then $\beta=\gamma+c\alpha\in\text{span}\{N_f,\alpha\}$ since $\gamma\in N_f$. Thus $N_f$ is hyperspace.
+}
+
+\thm{}{
+    $V:$ $F$-v.s. Let $W$ be hyperspace. Then $\exists f\in V^*\backslash\{0\}\s(W=N_f)$. 
+}
+
+\pf{Proof}{
+    Since it's proper, $\exists\alpha\in V\backslash W$. $W\subsetneq\text{span}\{W,\alpha\}\subset V$. Since $W$ is maximal, $\text{span}\{W,\alpha\}=V$. Then $\forall\beta\in V$ can be written as $\beta=\gamma+c\alpha$ for some $\gamma\in W$, $c\in F$. 
+
+    \clm{}{
+        This $\gamma$ and $c$ are uniquely decided by $\beta$. 
+    }
+    
+    \pf{Proof}{
+        Suppose $\beta=\gamma+c\alpha=\gamma'+c\alpha'$. Then $\gamma-\gamma'=(c'-c)\alpha$. If $c'-c\neq0$, then $\alpha\in W$, which is contradiction. Thus this expression is unique. 
+    }
+
+    \clm{}{
+        $c:=g(\beta)\in F$. Then $g:V\rightarrow F:\beta\mapsto g(\beta)$ is linear.
+    }
+
+    \pf{Proof}{
+        N.T.S. $g(d\beta_1+\beta_2)=dg(\beta_1)+g(\beta_2)$. Let $\beta_1=\gamma_1+c_1\alpha$, $\beta_2=\gamma_2+c_2\alpha$ where $c_i=g(\beta_i)$. Then $\beta_1+\beta_2=\gamma_1+\gamma_2+(c_1+c_2)\alpha$. By the uniqueness of the expression, $g(\beta_1+\beta_2)=c_1+c_2=g(\beta_1)+g(\beta_2)$. Also, $g(d\beta_1)=dc_1=dg(\beta_1)$. Thus $g$ is linear.
+    }
+
+    Since $g\in V^*$, $N_g=W$, thus our statement holds.
+}
+
+\section{The Transpose of a Linear Transformation}
+
+\dfn{Transpose}{
+    $T:V\rightarrow W:$ lin. trans. of $F$-v.s. We define the transpose $T^t:W^*\rightarrow V^*$. Then $V\rightarrow W\rightarrow F$ is defined as $g\circ T\in V^*$. So $T^t(g)=g\circ T$.
+}
+
+\mlemma{}{
+    $T^t$ is lin. trans.
+}
+
+\pf{Proof}{
+    $T^t(cg_1+g_2)=(cg_1+g_2)\circ T=cg_1\circ T+g_2\circ T=cT^t(g_1)+T^t(g_2)$. 
+}
+
+\thm{}{
+    $T:V\rightarrow W:$ lin. trans. Then 
+    \begin{itemize}
+        \item[i)] $N(T^t)=Ann(R(T))$
+        \item[ii)] If $V,W$ is f.d.v.s.$/F$, $\text{rank}(T^t)=\text{rank}(T)$ and $R(T^t)=Ann(N(T))$
+    \end{itemize}
+    \begin{center}
+        \begin{tikzpicture}
+            \node (V1) {$V$};
+            \node (V2) [right=of V1] {$W$};
+            \node (T) [left= 0.05cm of V1] {$T:$};
+            \node (W1) [below= 0.5cm of V1] {$N(T)$};
+            \node (W2) [below= 0.5cm of V2] {$R(T)$};
+            \draw[->] (V1) -- (V2);
+            \draw[<->] (V1) -- (W1);
+            \draw[<->] (V2) -- (W2);
+            \node (V11) [right= 1.5cm of V2] {$W^*$};
+            \node (V12) [right=of V11] {$V^*$};
+            \node (T) [left= 0.05cm of V11] {$T^*:$};
+            \node (W11) [below= 0.5cm of V11] {$R(T^t)$};
+            \node (W12) [below= 0.5cm of V12] {$N(T^t)$};
+            \draw[->] (V11) -- (V12);
+            \draw[<->] (V11) -- (W11);
+            \draw[<->] (V12) -- (W12);
+            \node (dim) [right= 0.1cm of V12] {$Ann(R(T))=N(T^t)$};
+            \node (dim) [right= 0.1cm of W12] {$Ann(N(T))=R(T^t)$};
+        \end{tikzpicture}
+    \end{center}
+}
+
+\pf{Proof}{
+    i): $N(T^t)$=$Ann(R(T))$, $g\in N(T^t)\iff T^t(g)=0\iff g\circ T=0\iff g\in Ann(R(T))$.
+
+    ii): Let $\dim(V)=n$, $\dim(W)=m$. Let $r:=\text{rank}(T)$. Then $\dim(Ann(R(T)))=m-r$. By i), $Ann(R(T))=N(T^t)\Rightarrow\dim N(T^t)=m-r\Rightarrow\dim(R(T^t))=r$ by rank-nullity.
+    Next, N.T.S. $R(T^t)=Ann(N(T))$. Let $f\in R(T^t)$. Then $f=T^t(g)$ for some $g\in W^*$. Then $f=g\circ T$. Now if $\alpha\in N(T)$, $f(\alpha)=g\circ T(\alpha)=0$, thus $f\in Ann(N(T))$. So $R(T^t)\subset Ann(N(T))$. But since both have same dim., $R(T^t)=Ann(N(T))$. 
+}
+
+\end{document}
